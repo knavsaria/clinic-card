@@ -1,13 +1,16 @@
 package com.navsaria.keeran.clinicbook;
 
+
 import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
 
-public class ChildrenActivity extends AppCompatActivity {
+public class ChildrenActivity extends SingleFragmentActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fragment);
+    protected Fragment createFragment() {
+        return new ChildrenListFragment();
     }
+
 }

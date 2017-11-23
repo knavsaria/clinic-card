@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ClinicBook</string>
+    <string name="add_child_button">Add Child</string>
+
 </resources>
