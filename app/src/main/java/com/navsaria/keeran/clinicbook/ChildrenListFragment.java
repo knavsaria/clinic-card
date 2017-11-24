@@ -40,33 +40,19 @@ public class ChildrenListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_children_list, container, false);
 
-        //Add children from mChildList to view
-//        LinearLayout linearLayout = (LinearLayout) v.findViewById(R.id.linear_layout_children);
-//        int index = 0;
-//        for (Child child : mChildList.getChildren()) {
-//            View childView = inflater.inflate(R.layout.child_view, null);
-            TextView childNameView = (TextView) v.findViewById(R.id.child_name);
-//            String firstName = child.getFirstName();
-//            String lastName = child.getLastName();
-//            String fullName = firstName + " " + lastName;
-//            TextView textView = new TextView(getActivity());
-//            ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(
-//                    ViewGroup.LayoutParams.WRAP_CONTENT,
-//                    ViewGroup.LayoutParams.WRAP_CONTENT
-//            );
-//            textView.setLayoutParams(layoutParams);
-//            textView.setText(fullName);
-//            linearLayout.addView(textView, index);
-        Child child = mChildList.getChildren().get(0);
-        String firstName = child.getFirstName();
-            String lastName = child.getLastName();
-            String fullName = firstName + " " + lastName;
-
+        //Fetch children from mChildList and update view
+        LinearLayout linearLayout = (LinearLayout) v.findViewById(R.id.linear_layout_children);
+        int index = 0;
+        View childView;
+        for (Child child : mChildList.getChildren()) {
+            childView = inflater.inflate(R.layout.child_view, linearLayout, false);
+            TextView childNameView = (TextView) childView.findViewById(R.id.child_name);
+            String fullName = getString(R.string.child_full_name, child.getFirstName(), child.getLastName());
             childNameView.setText(fullName);
-            //linearLayout.addView(childView, index);
-            //index++;
-        //}
-        //Add children from mChildList to view
+            linearLayout.addView(childView, index);
+            index++;
+        }
+
 
         mAddChild = v.findViewById(R.id.add_child);
         mAddChild.setOnClickListener(new View.OnClickListener() {
