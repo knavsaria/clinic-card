@@ -5,11 +5,18 @@
     android:layout_margin="16dp">
 
     <LinearLayout
-        android:id="@+id/linear_layout_children"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_centerInParent="true">
+
+        <LinearLayout
+            android:id="@+id/linear_layout_children"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
+        </LinearLayout>
 
         <Button
             android:id="@+id/add_child"

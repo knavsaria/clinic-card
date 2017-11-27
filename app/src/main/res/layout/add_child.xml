@@ -7,12 +7,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_margin="10dp">
 
         <TextView
             android:layout_width="100sp"
             android:layout_height="match_parent"
-            android:text="@string/add_first_name"/>
+            android:text="@string/add_first_name"
+            android:gravity="center"/>
 
         <EditText
             android:id="@+id/add_first_name"
@@ -24,12 +26,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_margin="10dp">
 
         <TextView
             android:layout_width="100sp"
             android:layout_height="match_parent"
-            android:text="@string/add_last_name"/>
+            android:text="@string/add_last_name"
+            android:gravity="center"/>
 
         <EditText
             android:id="@+id/add_last_name"
@@ -38,23 +42,36 @@
 
     </LinearLayout>
 
-
-
-
     <RadioGroup
+        android:id="@+id/child_gender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_margin="10dp"
+        android:layout_gravity="center_horizontal">
 
         <RadioButton
+            android:id="@+id/child_is_boy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/child_male"/>
+            android:text="@string/child_boy"
+            android:layout_marginRight="20dp"/>
 
         <RadioButton
+            android:id="@+id/child_is_girl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/child_female"/>
+            android:text="@string/child_girl"
+            android:layout_marginLeft="10dp"/>
     </RadioGroup>
+
+    <TextView
+        android:id="@+id/adding_child_error_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/error_message_adding_child"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:visibility="gone"/>
 
 </LinearLayout>
