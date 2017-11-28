@@ -3,12 +3,27 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/child_name"
+    <LinearLayout
+        android:id="@+id/child_viewgroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:layout_gravity="center"
-        android:text="@string/child_full_name"/>
+        android:orientation="horizontal"
+        android:clickable="true">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_account_circle_black_48dp"
+            android:background="@color/material_grey_50_mine"/>
+
+        <TextView
+            android:id="@+id/child_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:layout_gravity="center"
+            android:text="@string/child_full_name"/>
+
+    </LinearLayout>
 
 </FrameLayout>

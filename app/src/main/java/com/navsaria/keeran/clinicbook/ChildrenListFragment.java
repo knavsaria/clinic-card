@@ -12,8 +12,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -26,7 +28,7 @@ import java.io.Console;
 public class ChildrenListFragment extends Fragment {
 
     private ChildList mChildList;
-    private Button mAddChild;
+    private ImageButton mAddChild;
     private LinearLayout mLinearLayout;
 
     private static final String ADD_CHILD_DIALOG = "AddChildDialog";
@@ -93,6 +95,14 @@ public class ChildrenListFragment extends Fragment {
             TextView childNameView = (TextView) childView.findViewById(R.id.child_name);
             String fullName = getString(R.string.child_full_name, child.getFirstName(), child.getLastName());
             childNameView.setText(fullName);
+            final String firstName = child.getFirstName();
+            final String lastName = child.getLastName();
+            childView.setOnClickListener(new View.OnClickListener() {
+
+                public void onClick(View view) {
+                    Toast.makeText(getActivity(), firstName + " " + lastName, Toast.LENGTH_SHORT).show();
+                }
+            });
             mLinearLayout.addView(childView, index);
             index++;
         }
