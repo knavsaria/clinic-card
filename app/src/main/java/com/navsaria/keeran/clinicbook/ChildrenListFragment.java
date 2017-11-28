@@ -97,7 +97,7 @@ public class ChildrenListFragment extends Fragment {
             childNameView.setText(fullName);
             final String firstName = child.getFirstName();
             final String lastName = child.getLastName();
-            childView.setOnClickListener(new View.OnClickListener() {
+            childNameView.setOnClickListener(new View.OnClickListener() {
 
                 public void onClick(View view) {
                     Toast.makeText(getActivity(), firstName + " " + lastName, Toast.LENGTH_SHORT).show();
