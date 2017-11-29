@@ -1,6 +1,9 @@
 package com.navsaria.keeran.clinicbook;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+
+import com.navsaria.keeran.clinicbook.database.ChildBaseHelper;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -15,6 +18,8 @@ public class ChildList {
 
     private static ChildList sChildList;
     private LinkedHashMap<UUID, Child> mChildren;
+    private Context mContext;
+    private SQLiteDatabase mDatabase;
 
     public static ChildList getChildList(Context context) {
         if ( sChildList == null) {
@@ -25,6 +30,9 @@ public class ChildList {
     }
 
     private ChildList(Context context) {
+        mContext = context.getApplicationContext();
+        mDatabase = new ChildBaseHelper(context)
+                .getWritableDatabase();
         mChildren = new LinkedHashMap<>();
         Child firstChild = new Child();
         firstChild.setBoy(true);
