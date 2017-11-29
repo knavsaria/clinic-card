@@ -18,10 +18,10 @@ public class ChildList {
 
     public static ChildList getChildList(Context context) {
         if ( sChildList == null) {
-            return new ChildList(context);
-        } else {
-            return sChildList;
+            sChildList = new ChildList(context);
         }
+        return sChildList;
+
     }
 
     private ChildList(Context context) {
@@ -49,7 +49,8 @@ public class ChildList {
     }
 
     public Child getChild(UUID id) {
-        return mChildren.get(id);
+        Child child = mChildren.get(id);
+        return child;
     }
 
 }

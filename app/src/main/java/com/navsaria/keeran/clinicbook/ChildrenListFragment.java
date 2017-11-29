@@ -90,17 +90,17 @@ public class ChildrenListFragment extends Fragment {
         View childView;
         LayoutInflater inflater = LayoutInflater.from(getActivity());
         mLinearLayout.removeAllViews();
-        for (Child child : mChildList.getChildren()) {
+        for (final Child child : mChildList.getChildren()) {
             childView = inflater.inflate(R.layout.child_view, mLinearLayout, false);
             TextView childNameView = (TextView) childView.findViewById(R.id.child_name);
             String fullName = getString(R.string.child_full_name, child.getFirstName(), child.getLastName());
             childNameView.setText(fullName);
-            final String firstName = child.getFirstName();
-            final String lastName = child.getLastName();
             childNameView.setOnClickListener(new View.OnClickListener() {
 
                 public void onClick(View view) {
-                    Toast.makeText(getActivity(), firstName + " " + lastName, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getActivity(), firstName + " " + lastName, Toast.LENGTH_SHORT).show();
+                    Intent intent = ChildDetailsActivity.newIntent(getActivity(), child.getId());
+                    startActivity(intent);
                 }
             });
             mLinearLayout.addView(childView, index);
