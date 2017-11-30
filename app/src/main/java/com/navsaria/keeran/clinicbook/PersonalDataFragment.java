@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
 import java.util.Date;
 import java.util.UUID;
@@ -27,6 +28,10 @@ public class PersonalDataFragment extends Fragment {
 
     private Button mDatePicker;
     private Child mChild;
+    private EditText mChildFirstName;
+    private EditText mChildSurname;
+    private EditText mChildIdNum;
+    private EditText mMotherIdNum;
 
 
     public static PersonalDataFragment newInstance(UUID childId) {
@@ -61,7 +66,7 @@ public class PersonalDataFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_personal_data, container, false);
-        mDatePicker = (Button) v.findViewById(R.id.dob_button);
+        mDatePicker = (Button) v.findViewById(R.id.dob_child_button);
         updateDate();
         mDatePicker.setOnClickListener(new View.OnClickListener() {
 
@@ -73,6 +78,17 @@ public class PersonalDataFragment extends Fragment {
                 dialog.show(fm, DIALOG_DATE);
             }
         });
+
+        mChildFirstName = (EditText) v.findViewById(R.id.edit_text_child_firstname);
+        mChildFirstName.setText(mChild.getFirstName());
+
+        mChildSurname = (EditText) v.findViewById(R.id.edit_text_child_surname);
+        mChildSurname.setText(mChild.getLastName());
+
+        mChildIdNum = (EditText) v.findViewById(R.id.edit_text_child_id);
+
+
+        mMotherIdNum = (EditText) v.findViewById(R.id.edit_text_mother_id);
         return v;
     }
 

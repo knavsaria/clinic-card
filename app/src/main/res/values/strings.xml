@@ -8,9 +8,14 @@
     <string name="add_first_name">First Name</string>
     <string name="add_last_name">Surname</string>
     <string name="error_message_adding_child">Please provide the %1$s of your child</string>
-    <string name="label_first_name">First Name</string>
-    <string name="label_surname">Surname</string>
+    <string name="label_first_name">Child First Name</string>
+    <string name="label_surname">Child Surname</string>
     <string name="label_id_number">Child\'s ID Number</string>
     <string name="label_mother_id_number">Mother\'s ID Number</string>
     <string name="date_picker_title">Child\'s Date of Birth</string>
+    <string name="label_birth_facility">Name of facility where child was born</string>
+    <string name="label_child_address">Child\'s Residential Address</string>
+    <string name="label_mother_first_name">Mother\'s First Name</string>
+    <string name="label_mother_surname">Mother\'s Surname</string>
+    <string name="label_child_staying_with">Who does the child live with</string>
 </resources>

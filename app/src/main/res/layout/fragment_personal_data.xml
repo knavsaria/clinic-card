@@ -1,91 +1,192 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="10dp">
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight="1"
+            android:orientation="horizontal"
             android:layout_margin="10dp">
-            <TextView
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/label_first_name"/>
-            <EditText
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_margin="10dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_first_name"/>
+                <EditText
+                    android:id="@+id/edit_text_child_firstname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text="Shakeel"/>
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="Shakeel"/>
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_margin="10dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_surname"/>
+                <EditText
+                    android:id="@+id/edit_text_child_surname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text="Shakeel"/>
+            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight="1"
+            android:orientation="horizontal"
             android:layout_margin="10dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_id_number"/>
+                <EditText
+                    android:id="@+id/edit_text_child_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text="9184759873049"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_mother_id_number"/>
+                <EditText
+                    android:id="@+id/edit_text_mother_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text="9184759873049"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/dob_child_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="25th November 2016"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/label_surname"/>
+                android:text="@string/label_birth_facility"/>
             <EditText
+                android:id="@+id/edit_text_facility"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="Shakeel"/>
+                tools:text="St George's Hospital"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/label_child_address"/>
+            <EditText
+                android:id="@+id/edit_text_child_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="21 Poppy Place, Malabar, Port Elizabeth, 6025"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+                android:layout_margin="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_margin="10dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_mother_first_name"/>
+                <EditText
+                    android:id="@+id/edit_text_mother_firstname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text="Shakeel"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_margin="10dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_mother_surname"/>
+                <EditText
+                    android:id="@+id/edit_text_mother_surname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text="Shakeel"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/dob_mother_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="25th November 2016"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/label_child_staying_with"/>
+            <EditText
+                android:id="@+id/edit_text_child_staying_with"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="21 Poppy Place, Malabar, Port Elizabeth, 6025"/>
         </LinearLayout>
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="10dp">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight="1">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/label_id_number"/>
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:text="9184759873049"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight="1">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/label_mother_id_number"/>
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:text="9184759873049"/>
-        </LinearLayout>
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/dob_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-
-
-
-</LinearLayout>
+</ScrollView>
