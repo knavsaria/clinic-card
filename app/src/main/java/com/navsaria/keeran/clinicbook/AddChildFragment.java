@@ -65,7 +65,6 @@ public class AddChildFragment extends DialogFragment {
 
                     @Override
                     public void onClick(View view) {
-                        // TODO Do something
 
                         boolean genderError = false;
                         boolean firstNameError = false;

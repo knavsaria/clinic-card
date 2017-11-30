@@ -1,9 +1,13 @@
 package com.navsaria.keeran.clinicbook;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.navsaria.keeran.clinicbook.database.ChildBaseHelper;
+import com.navsaria.keeran.clinicbook.database.ChildCursorWrapper;
+import com.navsaria.keeran.clinicbook.database.ChildDbSchema.ChildTable;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -17,7 +21,6 @@ import java.util.UUID;
 public class ChildList {
 
     private static ChildList sChildList;
-    private LinkedHashMap<UUID, Child> mChildren;
     private Context mContext;
     private SQLiteDatabase mDatabase;
 
@@ -33,32 +36,83 @@ public class ChildList {
         mContext = context.getApplicationContext();
         mDatabase = new ChildBaseHelper(context)
                 .getWritableDatabase();
-        mChildren = new LinkedHashMap<>();
-        Child firstChild = new Child();
-        firstChild.setBoy(true);
-        firstChild.setFirstName("Shakeel");
-        firstChild.setLastName("Navsaria");
 
-        Child secondChild = new Child();
-        secondChild.setBoy(true);
-        secondChild.setFirstName("Aaryan");
-        secondChild.setLastName("Navsaria");
-
-        mChildren.put(firstChild.getId(), firstChild);
-        mChildren.put(secondChild.getId(), secondChild);
     }
 
     public List<Child> getChildren() {
-        return new ArrayList<>(mChildren.values());
+        List<Child> allChildren = new ArrayList<>();
+
+        ChildCursorWrapper cursor = queryChildren(null, null);
+
+        try {
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                allChildren.add(cursor.getChild());
+                cursor.moveToNext();
+            }
+        } finally {
+            cursor.close();
+        }
+        return  allChildren;
     }
 
     public void addChild(Child child) {
-        mChildren.put(child.getId(), child);
+        ContentValues values = getContentValues(child);
+        mDatabase.insert(ChildTable.NAME, null, values);
     }
 
     public Child getChild(UUID id) {
-        Child child = mChildren.get(id);
-        return child;
+        ChildCursorWrapper cursor = queryChildren(
+                ChildTable.Cols.UUID + " = ?",
+                new String[] {id.toString()}
+        );
+
+        try {
+            if (cursor.getCount() == 0) {
+                return null;
+            }
+            cursor.moveToFirst();
+            return cursor.getChild();
+        } finally {
+            cursor.close();
+        }
+
     }
 
+    public void updateChild(Child child) {
+        String uuidString = child.getId().toString();
+        ContentValues values = getContentValues(child);
+
+        mDatabase.update(ChildTable.NAME,values,
+                ChildTable.Cols.UUID + " = ?",
+                new String[] {uuidString});
+    }
+
+    private ChildCursorWrapper queryChildren(String whereClause, String[] whereArgs) {
+        Cursor cursor = mDatabase.query(
+                ChildTable.NAME,
+                null,
+                whereClause,
+                whereArgs,
+                null,
+                null,
+                null
+        );
+
+        return new ChildCursorWrapper(cursor);
+    }
+
+
+    private static ContentValues getContentValues(Child child) {
+        ContentValues values = new ContentValues();
+        values.put(ChildTable.Cols.UUID, child.getId().toString());
+        values.put(ChildTable.Cols.FIRST_NAME, child.getFirstName());
+        values.put(ChildTable.Cols.SURNAME, child.getLastName());
+        if (child.isBoy()) {
+            values.put(ChildTable.Cols.GENDER, 1);
+        } else {
+            values.put(ChildTable.Cols.GENDER, 0);
+        }
+        return values;
+    }
 }

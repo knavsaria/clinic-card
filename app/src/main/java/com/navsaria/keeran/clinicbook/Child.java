@@ -14,7 +14,11 @@ public class Child {
     private boolean mIsBoy;
 
     public Child() {
-        mId = UUID.randomUUID();
+        this(UUID.randomUUID());
+    }
+
+    public Child(UUID id) {
+        mId = id;
     }
 
     public String getFirstName() {

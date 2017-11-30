@@ -38,7 +38,6 @@ public class ChildrenListFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mChildList = ChildList.getChildList(getActivity()); // get all children stored in ChildList
     }
 
     @Nullable
@@ -85,6 +84,7 @@ public class ChildrenListFragment extends Fragment {
     }
 
     private void updateUI() {
+        mChildList = ChildList.getChildList(getActivity()); // get all children stored in ChildList
 
         int index = 0;
         View childView;
