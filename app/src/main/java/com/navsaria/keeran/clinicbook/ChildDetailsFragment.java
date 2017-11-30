@@ -84,7 +84,7 @@ public class ChildDetailsFragment extends Fragment{
     private class CategoryAdapter extends RecyclerView.Adapter<CategoryHolder> {
 
         private final String[] mCategoryList = {
-                "Peronal Data",
+                "Personal Data",
                 "Growth Measurements",
                 "Growth Stages",
                 "Immunisations",
