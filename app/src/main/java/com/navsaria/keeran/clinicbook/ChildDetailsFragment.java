@@ -8,9 +8,11 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.UUID;
@@ -43,6 +45,8 @@ public class ChildDetailsFragment extends Fragment{
         mChildId = (UUID) getArguments().getSerializable(ARGS_ID);
     }
 
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -59,13 +63,26 @@ public class ChildDetailsFragment extends Fragment{
         return  v;
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.i("ChildDetailsFragment", "onDestroy Called");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.i("ChildDetailsFragment", "fragment onStopCalled");
+    }
+
     ///////////////////////////////////////////////////////////////
     //RecyclerView ViewHolder
 
-    private class CategoryHolder extends RecyclerView.ViewHolder {
+    private class CategoryHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public CategoryHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.category_list_item, parent, false));
+            ((LinearLayout) itemView).setOnClickListener(this);
         }
 
         public void bind(String category) {
@@ -73,6 +90,11 @@ public class ChildDetailsFragment extends Fragment{
             categoryTitle.setText(category);
         }
 
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(getActivity(), PersonalDataActivity.class);
+            startActivity(intent);
+        }
     }
 
     //RecyclerView ViewHolder

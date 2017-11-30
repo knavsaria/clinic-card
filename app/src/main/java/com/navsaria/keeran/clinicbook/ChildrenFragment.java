@@ -2,30 +2,22 @@ package com.navsaria.keeran.clinicbook;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import org.w3c.dom.Text;
-
-import java.io.Console;
 
 /**
  * Created by keeran on 2017/11/22.
  */
 
-public class ChildrenListFragment extends Fragment {
+public class ChildrenFragment extends Fragment {
 
     private ChildList mChildList;
     private ImageButton mAddChild;
@@ -56,7 +48,7 @@ public class ChildrenListFragment extends Fragment {
             public void onClick(View view) {
                 FragmentManager fragmentManager = getFragmentManager();
                 AddChildFragment addChildDialog = new AddChildFragment();
-                addChildDialog.setTargetFragment(ChildrenListFragment.this, CHILD_DETAILS);
+                addChildDialog.setTargetFragment(ChildrenFragment.this, CHILD_DETAILS);
                 addChildDialog.show(fragmentManager, ADD_CHILD_DIALOG);
             }
         });
