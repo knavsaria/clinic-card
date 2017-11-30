@@ -6,6 +6,7 @@ import android.database.CursorWrapper;
 import com.navsaria.keeran.clinicbook.Child;
 import com.navsaria.keeran.clinicbook.database.ChildDbSchema.ChildTable;
 
+import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -23,11 +24,13 @@ public class ChildCursorWrapper extends CursorWrapper {
         String firstName = getString(getColumnIndex(ChildTable.Cols.FIRST_NAME));
         String surname = getString(getColumnIndex(ChildTable.Cols.SURNAME));
         int gender = getInt(getColumnIndex(ChildTable.Cols.GENDER));
+        long date = getLong(getColumnIndex(ChildTable.Cols.DATE));
 
         Child child = new Child(UUID.fromString(uuidString));
         child.setFirstName(firstName);
         child.setLastName(surname);
         child.setBoy(gender != 0);
+        child.setDob(new Date(date));
 
         return child;
     }

@@ -113,6 +113,8 @@ public class ChildList {
         } else {
             values.put(ChildTable.Cols.GENDER, 0);
         }
+        values.put(ChildTable.Cols.DATE, child.getDob().getTime());
+
         return values;
     }
 }

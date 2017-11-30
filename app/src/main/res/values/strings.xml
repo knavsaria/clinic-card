@@ -10,4 +10,7 @@
     <string name="error_message_adding_child">Please provide the %1$s of your child</string>
     <string name="label_first_name">First Name</string>
     <string name="label_surname">Surname</string>
+    <string name="label_id_number">Child\'s ID Number</string>
+    <string name="label_mother_id_number">Mother\'s ID Number</string>
+    <string name="date_picker_title">Child\'s Date of Birth</string>
 </resources>

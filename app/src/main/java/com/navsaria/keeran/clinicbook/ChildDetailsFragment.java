@@ -24,7 +24,7 @@ import java.util.UUID;
 public class ChildDetailsFragment extends Fragment{
 
     private RecyclerView mRecyclerView;
-    private UUID mChildId;
+    private Child mChild;
 
     private static final String ARGS_ID = "child_id";
 
@@ -42,7 +42,8 @@ public class ChildDetailsFragment extends Fragment{
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mChildId = (UUID) getArguments().getSerializable(ARGS_ID);
+        UUID childId = (UUID) getArguments().getSerializable(ARGS_ID);
+        mChild = ChildList.getChildList(getActivity()).getChild(childId);
     }
 
 
@@ -52,9 +53,7 @@ public class ChildDetailsFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_child_details, container, false);
 
-        ChildList childList = ChildList.getChildList(getActivity());
-        Child child = childList.getChild(mChildId);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(child.getFirstName() + " " + child.getLastName());
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(mChild.getFirstName() + " " + mChild.getLastName());
 
         mRecyclerView = (RecyclerView) v.findViewById(R.id.child_recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -72,7 +71,7 @@ public class ChildDetailsFragment extends Fragment{
     @Override
     public void onStop() {
         super.onStop();
-        Log.i("ChildDetailsFragment", "fragment onStopCalled");
+        Log.i("ChildDetailsFragment", "onStop Called");
     }
 
     ///////////////////////////////////////////////////////////////
@@ -92,7 +91,7 @@ public class ChildDetailsFragment extends Fragment{
 
         @Override
         public void onClick(View view) {
-            Intent intent = new Intent(getActivity(), PersonalDataActivity.class);
+            Intent intent = PersonalDataActivity.newIntent(getActivity(), mChild.getId());
             startActivity(intent);
         }
     }

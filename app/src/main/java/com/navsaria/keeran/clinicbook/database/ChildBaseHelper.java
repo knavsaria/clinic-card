@@ -26,7 +26,8 @@ public class ChildBaseHelper extends SQLiteOpenHelper {
                 ChildTable.Cols.UUID + ", " +
                 ChildTable.Cols.FIRST_NAME + ", " +
                 ChildTable.Cols.SURNAME + ", " +
-                ChildTable.Cols.GENDER +
+                ChildTable.Cols.GENDER + ", " +
+                ChildTable.Cols.DATE +
                 ")"
         );
     }

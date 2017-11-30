@@ -1,20 +1,32 @@
 package com.navsaria.keeran.clinicbook;
 
+import java.io.Serializable;
+import java.util.Date;
 import java.util.UUID;
 
 /**
  * Created by keeran on 2017/11/23.
  */
 
-public class Child {
+public class Child implements Serializable {
 
     private UUID mId;
     private String mFirstName;
     private String mLastName;
     private boolean mIsBoy;
+    private Date mDob;
+
+    public Date getDob() {
+        return mDob;
+    }
+
+    public void setDob(Date dob) {
+        mDob = dob;
+    }
 
     public Child() {
         this(UUID.randomUUID());
+        mDob = new Date();
     }
 
     public Child(UUID id) {
