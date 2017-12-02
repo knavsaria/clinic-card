@@ -26,4 +26,7 @@
     <string name="birth_alive_number">Number alive now</string>
     <string name="label_date_info_given">Date information given</string>
     <string name="label_death_reason">Reason(s) for death(s)</string>
+    <string name="personal_data_child_info">Child</string>
+    <string name="label_child_stay_with">Who does the child stay with</string>
+    <string name="label_mother_id">Mother\'s ID Number</string>
 </resources>

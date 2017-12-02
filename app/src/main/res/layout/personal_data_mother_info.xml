@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_mother_first_name"/>
+                <EditText
+                    android:id="@+id/edit_text_mother_firstname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text="Samiera"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_mother_surname"/>
+                <EditText
+                    android:id="@+id/edit_text_mother_surname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text="Ebrahim"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_mother_id"
+        android:layout_marginTop="10dp"/>
+    <EditText
+        android:id="@+id/edit_text_mother_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="25th November 2016"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_mother_dob"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"/>
+    <Button
+        android:id="@+id/dob_mother_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="25th November 2016"/>
+
+</LinearLayout>
+
