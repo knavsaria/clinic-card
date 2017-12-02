@@ -18,4 +18,12 @@
     <string name="label_mother_first_name">Mother\'s First Name</string>
     <string name="label_mother_surname">Mother\'s Surname</string>
     <string name="label_child_staying_with">Who does the child live with</string>
+    <string name="label_father_first_name">Father\'s First Name</string>
+    <string name="label_father_surname">Father\'s Surname</string>
+    <string name="label_mother_dob">Mother\'s Date of Birth</string>
+    <string name="label_father_dob">Father\'s Date of Birth</string>
+    <string name="birth_number">Number born (including stillbirths)</string>
+    <string name="birth_alive_number">Number alive now</string>
+    <string name="label_date_info_given">Date information given</string>
+    <string name="label_death_reason">Reason(s) for death(s)</string>
 </resources>
