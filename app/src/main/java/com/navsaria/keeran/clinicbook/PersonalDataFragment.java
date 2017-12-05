@@ -144,17 +144,37 @@ public class PersonalDataFragment extends Fragment {
         private final String DATE_PICKER_TAG = "com.navsaria.keeran.child.dataPicker";
 
         private Button mDatePicker;
+        private EditText mChildFirstName;
+        private EditText mChildSurname;
+        private EditText mChildId;
+        private EditText mBirthFacility;
+        private EditText mChildStayingWith;
+        private EditText mAddress;
+
 
         public PersonalDataChildHolder(LayoutInflater inflater, ViewGroup parent, int layoutId) {
             super(inflater.inflate(layoutId, parent, false));
             mDatePicker = (Button) itemView.findViewById(R.id.dob_child_button);
             updateDate();
             mDatePicker.setOnClickListener(this);
+
+            mChildFirstName = (EditText) itemView.findViewById(R.id.edit_text_child_firstname);
+            mChildSurname = (EditText) itemView.findViewById(R.id.edit_text_child_surname);
+            mChildId = (EditText) itemView.findViewById(R.id.edit_text_child_id);
+            mBirthFacility = (EditText) itemView.findViewById(R.id.edit_text_facility);
+            mChildStayingWith = (EditText) itemView.findViewById(R.id.edit_text_child_stay_with);
+            mAddress = (EditText) itemView.findViewById(R.id.edit_text_child_address);
         }
 
         public void bind() {
-            updateDate();
-
+            //updateDate();
+            mChildFirstName.setText(mChild.getFirstName());
+            mChildSurname.setText(mChild.getLastName());
+            mChildId.setText(mChild.getIdNumber());
+            mBirthFacility.setText(mChild.getBirthFacility());
+            mChildStayingWith.setText(mChild.getChildStayingWith());
+            mAddress.setText(mChild.getAddress());
+            mDatePicker.setText(mChild.getDob().toString());
         }
 
         private void updateDate() {
