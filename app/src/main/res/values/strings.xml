@@ -31,4 +31,10 @@
     <string name="label_mother_id">Mother\'s ID Number</string>
     <string name="personal_data_mother_info">Mother\'s Information</string>
     <string name="label_child_dob">Child\'s Date of Birth</string>
+    <string name="labelButton_personal_data">Personal Data</string>
+    <string name="labelButton_growth_measurements">Growth Measurements</string>
+    <string name="labelButton_growth_stages">Growth Stages</string>
+    <string name="labelButton_immunisations">Immunisations</string>
+    <string name="labelButton_medication">Medication</string>
+    <string name="labelButton_allergies">Allergies</string>
 </resources>

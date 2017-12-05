@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -21,7 +22,7 @@ import java.util.UUID;
  * Created by keeran on 2017/11/28.
  */
 
-public class ChildDetailsFragment extends Fragment{
+public class ChildDetailsFragment extends Fragment implements View.OnClickListener {
 
     private RecyclerView mRecyclerView;
     private Child mChild;
@@ -52,14 +53,17 @@ public class ChildDetailsFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_child_details, container, false);
-
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(mChild.getFirstName() + " " + mChild.getLastName());
 
-        mRecyclerView = (RecyclerView) v.findViewById(R.id.child_recycler_view);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mRecyclerView.setAdapter(new CategoryAdapter());
-
+        Button personalDataButton = (Button) v.findViewById(R.id.button_personal_data);
+        personalDataButton.setOnClickListener(this);
         return  v;
+    }
+
+    @Override
+    public void onClick(View view) {
+        Intent intent = PersonalDataActivity.newIntent(getActivity(), mChild.getId());
+        startActivity(intent);
     }
 
     @Override
@@ -73,64 +77,5 @@ public class ChildDetailsFragment extends Fragment{
         super.onStop();
         Log.i("ChildDetailsFragment", "onStop Called");
     }
-
-    ///////////////////////////////////////////////////////////////
-    //RecyclerView ViewHolder
-
-    private class CategoryHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
-        public CategoryHolder(LayoutInflater inflater, ViewGroup parent) {
-            super(inflater.inflate(R.layout.category_list_item, parent, false));
-            ((LinearLayout) itemView).setOnClickListener(this);
-        }
-
-        public void bind(String category) {
-            TextView categoryTitle = itemView.findViewById(R.id.category_title);
-            categoryTitle.setText(category);
-        }
-
-        @Override
-        public void onClick(View view) {
-            Intent intent = PersonalDataActivity.newIntent(getActivity(), mChild.getId());
-            startActivity(intent);
-        }
-    }
-
-    //RecyclerView ViewHolder
-    ///////////////////////////////////////////////////////////////
-
-    ///////////////////////////////////////////////////////////////
-    //RecyclerView Adapter
-
-    private class CategoryAdapter extends RecyclerView.Adapter<CategoryHolder> {
-
-        private final String[] mCategoryList = {
-                "Personal Data",
-                "Growth Measurements",
-                "Growth Stages",
-                "Immunisations",
-                "Medications",
-                "Allergies"
-        };
-
-        @Override
-        public CategoryHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            LayoutInflater inflater = LayoutInflater.from(getActivity());
-            return new CategoryHolder(inflater, parent);
-        }
-
-        @Override
-        public void onBindViewHolder(CategoryHolder holder, int position) {
-            String category = mCategoryList[position];
-            holder.bind(category);
-        }
-
-        @Override
-        public int getItemCount() {
-            return mCategoryList.length;
-        }
-    }
-    //RecyclerView Adapter
-    ///////////////////////////////////////////////////////////////
 
 }// End of Class ChildDetailsFragment

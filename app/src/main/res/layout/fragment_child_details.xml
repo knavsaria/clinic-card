@@ -1,9 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.RecyclerView
-
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/child_recycler_view"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
 
-</android.support.v7.widget.RecyclerView>
+    <Button
+        android:id="@+id/button_personal_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/labelButton_personal_data" />
+
+    <Button
+        android:id="@+id/button_growth_measurements"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/labelButton_growth_measurements"/>
+
+    <Button
+        android:id="@+id/button_growth_stages"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/labelButton_growth_stages"/>
+
+    <Button
+        android:id="@+id/button_immunisations"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/labelButton_immunisations"/>
+
+    <Button
+        android:id="@+id/button_medications"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/labelButton_medication"/>
+
+    <Button
+        android:id="@+id/button_allergies"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/labelButton_allergies"/>
+
+</LinearLayout>
