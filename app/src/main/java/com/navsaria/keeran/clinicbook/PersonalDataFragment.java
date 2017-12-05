@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,14 +80,15 @@ public class PersonalDataFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_personal_data, container, false);
                 ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(mChild.getFirstName() + " " + mChild.getLastName());
 
-        mRecyclerView = (RecyclerView) v.findViewById(R.id.child_recycler_view);
+        mRecyclerView = (RecyclerView) v.findViewById(R.id.personal_data_recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.setAdapter(new PersonalDataAdapter());
 
         return v;
     }
 
-
+    ///////////////////////////////////////////////////////////////
+    //PersonalDataAdapter Adapter
     private class PersonalDataAdapter extends RecyclerView.Adapter<PersonalDataHolder> {
 
 
@@ -110,7 +112,11 @@ public class PersonalDataFragment extends Fragment {
             return (Integer) mLinkedHashMap.get(position);
         }
     }
+    //PersonalDataAdapter Adapter
+    ///////////////////////////////////////////////////////////////
 
+    ///////////////////////////////////////////////////////////////
+    //PersonalDataChildHolder ViewHolder
     private class PersonalDataHolder extends RecyclerView.ViewHolder {
 
         public PersonalDataHolder(LayoutInflater inflater, ViewGroup parent, int layoutId) {
@@ -118,39 +124,43 @@ public class PersonalDataFragment extends Fragment {
         }
     }
 
-    private class PersonalDataChildHolder extends PersonalDataHolder {
+    private class PersonalDataChildHolder extends PersonalDataHolder implements View.OnClickListener {
 
         private final String DATE_PICKER_TAG = "com.navsaria.keeran.child.dataPicker";
 
-        private DatePicker mDatePicker;
+        private Button mDatePicker;
 
         public PersonalDataChildHolder(LayoutInflater inflater, ViewGroup parent, int layoutId) {
             super(inflater, parent, layoutId);
-            mDatePicker = (DatePicker) itemView.findViewById(R.id.dob_child_button);
-            mDatePicker.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    FragmentManager fm = getFragmentManager();
-                    DatePickerFragment datePickerFragment = DatePickerFragment.newInstance(mChild.getDob());
-                    datePickerFragment.show(fm, DATE_PICKER_TAG);
-                }
-            });
+            mDatePicker = (Button) itemView.findViewById(R.id.dob_child_button);
+            updateDate();
+            mDatePicker.setOnClickListener(this);
         }
+
         private void updateDate() {
             mDatePicker.setText(mChild.getDob().toString());
         }
 
-        @Override
-        public void onActivityResult(int requestCode, int resultCode, Intent data) {
-            if (resultCode != Activity.RESULT_OK) {
-                return;
-            }
 
-            if (requestCode == REQUEST_CODE) {
-                Date date = (Date) data.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
-                mChild.setDob(date);
-                updateDate();
-            }
+        @Override
+        public void onClick(View view) {
+            FragmentManager fm = getFragmentManager();
+            DatePickerFragment datePickerFragment = DatePickerFragment.newInstance(mChild.getDob());
+            datePickerFragment.setTargetFragment(PersonalDataFragment.this, DatePickerFragment.CHILD_TITLE);
+            datePickerFragment.show(fm, DATE_PICKER_TAG);
+        }
+    }
+    //PersonalDataChildHolder ViewHolder
+    ///////////////////////////////////////////////////////////////
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.i("PersonalDataFragment", "onActivityResult Called");
+        if (resultCode != Activity.RESULT_OK) {
+            return;
+        }
+
+        if (requestCode == REQUEST_CODE) {
+            Date date = (Date) data.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
+            mChild.setDob(date);
         }
     }
 

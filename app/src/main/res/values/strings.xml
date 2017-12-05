@@ -12,7 +12,7 @@
     <string name="label_surname">Child Surname</string>
     <string name="label_id_number">Child\'s ID Number</string>
     <string name="label_mother_id_number">Mother\'s ID Number</string>
-    <string name="date_picker_title">Child\'s Date of Birth</string>
+    <string name="date_picker_title">%1$s\'s Date of Birth</string>
     <string name="label_birth_facility">Name of facility where child was born</string>
     <string name="label_child_address">Child\'s Residential Address</string>
     <string name="label_mother_first_name">Mother\'s First Name</string>
@@ -26,7 +26,9 @@
     <string name="birth_alive_number">Number alive now</string>
     <string name="label_date_info_given">Date information given</string>
     <string name="label_death_reason">Reason(s) for death(s)</string>
-    <string name="personal_data_child_info">Child</string>
+    <string name="personal_data_child_info">Child\'s Information</string>
     <string name="label_child_stay_with">Who does the child stay with</string>
     <string name="label_mother_id">Mother\'s ID Number</string>
+    <string name="personal_data_mother_info">Mother\'s Information</string>
+    <string name="label_child_dob">Child\'s Date of Birth</string>
 </resources>

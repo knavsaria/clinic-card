@@ -1,71 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
+
+<FrameLayout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp">
 
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view_mother_info"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        card_view:cardElevation="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="1">
-                <TextView
+            android:orientation="vertical">
+            <TextView
+                style="@style/card_view_header"
+                android:text="@string/personal_data_mother_info"
+                />
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/label_mother_first_name"/>
-                <EditText
-                    android:id="@+id/edit_text_mother_firstname"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:text="Samiera"/>
-            </LinearLayout>
+                    android:orientation="horizontal">
 
-            <LinearLayout
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="1">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/label_mother_first_name"/>
+                        <EditText
+                            android:id="@+id/edit_text_mother_firstname"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:text="Samiera"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="1">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/label_mother_surname"/>
+                        <EditText
+                            android:id="@+id/edit_text_mother_surname"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:text="Ebrahim"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_mother_id"
+                android:layout_marginTop="10dp"/>
+            <EditText
+                android:id="@+id/edit_text_mother_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="1">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/label_mother_surname"/>
-                <EditText
-                    android:id="@+id/edit_text_mother_surname"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:text="Ebrahim"/>
-            </LinearLayout>
+                tools:text="25th November 2016"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_mother_dob"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"/>
+            <Button
+                android:id="@+id/dob_mother_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="25th November 2016"/>
         </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/label_mother_id"
-        android:layout_marginTop="10dp"/>
-    <EditText
-        android:id="@+id/edit_text_mother_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="25th November 2016"/>
+    </android.support.v7.widget.CardView>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/label_mother_dob"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"/>
-    <Button
-        android:id="@+id/dob_mother_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="25th November 2016"/>
+</FrameLayout>
 
-</LinearLayout>
 

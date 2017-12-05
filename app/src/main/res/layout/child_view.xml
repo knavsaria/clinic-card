@@ -5,7 +5,7 @@
 
         <TextView
             android:id="@+id/child_name"
-            style="@style/category_list_item"
+            style="@style/style_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAlignment="center"

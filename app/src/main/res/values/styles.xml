@@ -8,10 +8,24 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="category_list_item" >
+    <style name="style_text_view" >
         <item name="android:textSize">16sp</item>
         <item name="android:padding">12dp</item>
         <item name="android:textColor">@android:color/black</item>
     </style>
+
+    <style name="card_view_header" >
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/colorAccent</item>
+        <item name="android:textSize">19sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
 
 </resources>

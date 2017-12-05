@@ -24,8 +24,12 @@ public class DatePickerFragment extends DialogFragment {
 
     private static final String ARG_DATE = "date";
     public static final String EXTRA_DATE = "com.navsaria.keeran.date";
+    public static final int CHILD_TITLE = 0;
+    public static final int MOTHER_TITLE = 1;
+    public static final int FATHER_TITLE = 2;
 
     private DatePicker mDatePicker;
+    private String mTitleSubject;
 
     public static DatePickerFragment newInstance(Date date) {
         Bundle args = new Bundle();
@@ -50,12 +54,26 @@ public class DatePickerFragment extends DialogFragment {
         View v = LayoutInflater.from(getActivity()).inflate(
                 R.layout.dialog_date, null);
 
+        switch (getTargetRequestCode()){
+            case CHILD_TITLE:
+                mTitleSubject = "Child";
+                break;
+            case  MOTHER_TITLE:
+                mTitleSubject = "Mother";
+                break;
+            case FATHER_TITLE:
+                mTitleSubject = "Father";
+                break;
+            default:
+                break;
+        }
+
         mDatePicker = (DatePicker) v.findViewById(R.id.dialog_date_picker);
         mDatePicker.init(year, month, day, null);
 
         return new AlertDialog.Builder(getActivity())
                 .setView(v)
-                .setTitle(R.string.date_picker_title)
+                .setTitle(getString(R.string.date_picker_title, mTitleSubject))
                 .setPositiveButton(android.R.string.ok,
                         new DialogInterface.OnClickListener() {
                             @Override
