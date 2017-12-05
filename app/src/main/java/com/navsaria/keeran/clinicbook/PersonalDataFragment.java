@@ -33,7 +33,6 @@ public class PersonalDataFragment extends Fragment {
 
     private static final String DIALOG_DATE = "DialogDate";
     private static final String ARGS_ID = "child_id";
-    private static final int REQUEST_CODE = 0;
     public static final String INSTANCE_STATE_CHILD = "com.navsaria.keeran.mchild";
 
     private RecyclerView mRecyclerView;
@@ -89,22 +88,29 @@ public class PersonalDataFragment extends Fragment {
 
     ///////////////////////////////////////////////////////////////
     //PersonalDataAdapter Adapter
-    private class PersonalDataAdapter extends RecyclerView.Adapter<PersonalDataHolder> {
+    private class PersonalDataAdapter extends RecyclerView.Adapter<PersonalDataChildHolder> {
 
 
         @Override
-        public PersonalDataHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public PersonalDataChildHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             LayoutInflater inflater = LayoutInflater.from(getActivity());
-            return new PersonalDataHolder(inflater, parent, viewType);
+            if (viewType == R.layout.personal_data_child_info) {
+                return new PersonalDataChildHolder(inflater, parent, viewType);
+            } else {
+                return null;
+            }
         }
 
         @Override
-        public void onBindViewHolder(PersonalDataHolder holder, int position) {
+        public void onBindViewHolder(PersonalDataChildHolder holder, int position) {
+            if (position == 0) {
+                holder.bind();
+            }
         }
 
         @Override
         public int getItemCount() {
-            return mLinkedHashMap.size();
+            return 1;
         }
 
         @Override
@@ -116,31 +122,44 @@ public class PersonalDataFragment extends Fragment {
     ///////////////////////////////////////////////////////////////
 
     ///////////////////////////////////////////////////////////////
-    //PersonalDataChildHolder ViewHolder
-    private class PersonalDataHolder extends RecyclerView.ViewHolder {
+    //PersonalDataHolder ViewHolder
+/*    private abstract class PersonalDataHolder extends RecyclerView.ViewHolder {
 
         public PersonalDataHolder(LayoutInflater inflater, ViewGroup parent, int layoutId) {
             super(inflater.inflate(layoutId, parent, false));
         }
-    }
 
-    private class PersonalDataChildHolder extends PersonalDataHolder implements View.OnClickListener {
+    }*/
+    //PersonalDataHolder ViewHolder
+    ///////////////////////////////////////////////////////////////
+
+
+    ///////////////////////////////////////////////////////////////
+    //PersonalDataChildHolder ViewHolder
+
+    private class PersonalDataChildHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+
+
 
         private final String DATE_PICKER_TAG = "com.navsaria.keeran.child.dataPicker";
 
         private Button mDatePicker;
 
         public PersonalDataChildHolder(LayoutInflater inflater, ViewGroup parent, int layoutId) {
-            super(inflater, parent, layoutId);
+            super(inflater.inflate(layoutId, parent, false));
             mDatePicker = (Button) itemView.findViewById(R.id.dob_child_button);
             updateDate();
             mDatePicker.setOnClickListener(this);
         }
 
+        public void bind() {
+            updateDate();
+
+        }
+
         private void updateDate() {
             mDatePicker.setText(mChild.getDob().toString());
         }
-
 
         @Override
         public void onClick(View view) {
@@ -158,10 +177,12 @@ public class PersonalDataFragment extends Fragment {
             return;
         }
 
-        if (requestCode == REQUEST_CODE) {
+        if (requestCode == DatePickerFragment.CHILD_TITLE) {
             Date date = (Date) data.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
             mChild.setDob(date);
+            mRecyclerView.getAdapter().notifyItemChanged(0);
         }
     }
+
 
 }
