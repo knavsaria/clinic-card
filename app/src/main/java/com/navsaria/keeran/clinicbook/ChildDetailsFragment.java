@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.UUID;
 
@@ -57,6 +58,14 @@ public class ChildDetailsFragment extends Fragment implements View.OnClickListen
 
         Button personalDataButton = (Button) v.findViewById(R.id.button_personal_data);
         personalDataButton.setOnClickListener(this);
+
+        Button growthMeasurementsButton = (Button) v.findViewById(R.id.button_growth_measurements);
+        growthMeasurementsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(), mChild.getLastName() + " " + mChild.getFirstName(), Toast.LENGTH_SHORT).show();
+            }
+        });
         return  v;
     }
 
