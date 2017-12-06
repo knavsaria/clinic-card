@@ -7,22 +7,16 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Spinner;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.UUID;
 
 /**
@@ -86,14 +80,45 @@ public class PersonalDataFragment extends Fragment implements View.OnClickListen
                 ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(mChild.getFirstName() + " " + mChild.getLastName());
 
         mDatePicker = (Button) v.findViewById(R.id.dob_child_button);
-        updateDate();
         mDatePicker.setOnClickListener(this);
 
         mChildFirstName = (EditText) v.findViewById(R.id.edit_text_child_firstname);
         mChildFirstName.setText(mChild.getFirstName());
+        mChildFirstName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                mChild.setFirstName(charSequence.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
 
         mChildSurname = (EditText) v.findViewById(R.id.edit_text_child_surname);
         mChildSurname.setText(mChild.getLastName());
+        mChildSurname.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                mChild.setLastName(charSequence.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
 
         mChildId = (EditText) v.findViewById(R.id.edit_text_child_id);
         mChildId.setText(mChild.getIdNumber());
@@ -106,6 +131,8 @@ public class PersonalDataFragment extends Fragment implements View.OnClickListen
 
         mAddress = (EditText) v.findViewById(R.id.edit_text_child_address);
         mAddress.setText(mChild.getAddress());
+
+        updateView();
 
         return v;
     }
@@ -129,12 +156,14 @@ public class PersonalDataFragment extends Fragment implements View.OnClickListen
         if (requestCode == DatePickerFragment.CHILD_TITLE) {
             Date date = (Date) data.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
             mChild.setDob(date);
-            updateDate();
+            updateView();
         }
     }
 
-    private void updateDate() {
+    private void updateView() {
         mDatePicker.setText(mChild.getDob().toString());
+        mChildFirstName.setText(mChild.getFirstName());
+        mChildSurname.setText(mChild.getLastName());
     }
 
 
