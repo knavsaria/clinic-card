@@ -29,16 +29,24 @@ import java.util.UUID;
  * Created by keeran on 2017/11/30.
  */
 
-public class PersonalDataFragment extends Fragment {
+public class PersonalDataFragment extends Fragment implements View.OnClickListener{
 
-    private static final String DIALOG_DATE = "DialogDate";
     private static final String ARGS_ID = "child_id";
     public static final String INSTANCE_STATE_CHILD = "com.navsaria.keeran.mchild";
+    private final String DATE_PICKER_TAG = "com.navsaria.keeran.child.dataPicker";
 
-    private RecyclerView mRecyclerView;
+
     private Child mChild;
-    private final LinkedHashMap mLinkedHashMap = new LinkedHashMap();
 
+    //Child Info CardView
+    private Button mDatePicker;
+    private EditText mChildFirstName;
+    private EditText mChildSurname;
+    private EditText mChildId;
+    private EditText mBirthFacility;
+    private EditText mChildStayingWith;
+    private EditText mAddress;
+    //Child Info CardView
 
 
 
@@ -55,8 +63,6 @@ public class PersonalDataFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mLinkedHashMap.put(0, R.layout.personal_data_child_info);
-        mLinkedHashMap.put(1, R.layout.personal_data_mother_info);
 
         if (savedInstanceState != null) {
             mChild = (Child) savedInstanceState.getSerializable(INSTANCE_STATE_CHILD);
@@ -79,118 +85,41 @@ public class PersonalDataFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_personal_data, container, false);
                 ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(mChild.getFirstName() + " " + mChild.getLastName());
 
-        mRecyclerView = (RecyclerView) v.findViewById(R.id.personal_data_recycler_view);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mRecyclerView.setAdapter(new PersonalDataAdapter());
+        mDatePicker = (Button) v.findViewById(R.id.dob_child_button);
+        updateDate();
+        mDatePicker.setOnClickListener(this);
+
+        mChildFirstName = (EditText) v.findViewById(R.id.edit_text_child_firstname);
+        mChildFirstName.setText(mChild.getFirstName());
+
+        mChildSurname = (EditText) v.findViewById(R.id.edit_text_child_surname);
+        mChildSurname.setText(mChild.getLastName());
+
+        mChildId = (EditText) v.findViewById(R.id.edit_text_child_id);
+        mChildId.setText(mChild.getIdNumber());
+
+        mBirthFacility = (EditText) v.findViewById(R.id.edit_text_facility);
+        mBirthFacility.setText(mChild.getBirthFacility());
+
+        mChildStayingWith = (EditText) v.findViewById(R.id.edit_text_child_stay_with);
+        mChildStayingWith.setText(mChild.getChildStayingWith());
+
+        mAddress = (EditText) v.findViewById(R.id.edit_text_child_address);
+        mAddress.setText(mChild.getAddress());
 
         return v;
     }
 
-    ///////////////////////////////////////////////////////////////
-    //PersonalDataAdapter Adapter
-    private class PersonalDataAdapter extends RecyclerView.Adapter<PersonalDataChildHolder> {
 
-
-        @Override
-        public PersonalDataChildHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            LayoutInflater inflater = LayoutInflater.from(getActivity());
-            if (viewType == R.layout.personal_data_child_info) {
-                return new PersonalDataChildHolder(inflater, parent, viewType);
-            } else {
-                return null;
-            }
-        }
-
-        @Override
-        public void onBindViewHolder(PersonalDataChildHolder holder, int position) {
-            if (position == 0) {
-                holder.bind();
-            }
-        }
-
-        @Override
-        public int getItemCount() {
-            return 1;
-        }
-
-        @Override
-        public int getItemViewType(int position) {
-            return (Integer) mLinkedHashMap.get(position);
-        }
+    @Override
+    public void onClick(View view) {
+        FragmentManager fm = getFragmentManager();
+        DatePickerFragment datePickerFragment = DatePickerFragment.newInstance(mChild.getDob());
+        datePickerFragment.setTargetFragment(PersonalDataFragment.this, DatePickerFragment.CHILD_TITLE);
+        datePickerFragment.show(fm, DATE_PICKER_TAG);
     }
-    //PersonalDataAdapter Adapter
-    ///////////////////////////////////////////////////////////////
-
-    ///////////////////////////////////////////////////////////////
-    //PersonalDataHolder ViewHolder
-/*    private abstract class PersonalDataHolder extends RecyclerView.ViewHolder {
-
-        public PersonalDataHolder(LayoutInflater inflater, ViewGroup parent, int layoutId) {
-            super(inflater.inflate(layoutId, parent, false));
-        }
-
-    }*/
-    //PersonalDataHolder ViewHolder
-    ///////////////////////////////////////////////////////////////
 
 
-    ///////////////////////////////////////////////////////////////
-    //PersonalDataChildHolder ViewHolder
-
-    private class PersonalDataChildHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-
-
-
-        private final String DATE_PICKER_TAG = "com.navsaria.keeran.child.dataPicker";
-
-        private Button mDatePicker;
-        private EditText mChildFirstName;
-        private EditText mChildSurname;
-        private EditText mChildId;
-        private EditText mBirthFacility;
-        private EditText mChildStayingWith;
-        private EditText mAddress;
-
-
-        public PersonalDataChildHolder(LayoutInflater inflater, ViewGroup parent, int layoutId) {
-            super(inflater.inflate(layoutId, parent, false));
-            mDatePicker = (Button) itemView.findViewById(R.id.dob_child_button);
-            updateDate();
-            mDatePicker.setOnClickListener(this);
-
-            mChildFirstName = (EditText) itemView.findViewById(R.id.edit_text_child_firstname);
-            mChildSurname = (EditText) itemView.findViewById(R.id.edit_text_child_surname);
-            mChildId = (EditText) itemView.findViewById(R.id.edit_text_child_id);
-            mBirthFacility = (EditText) itemView.findViewById(R.id.edit_text_facility);
-            mChildStayingWith = (EditText) itemView.findViewById(R.id.edit_text_child_stay_with);
-            mAddress = (EditText) itemView.findViewById(R.id.edit_text_child_address);
-        }
-
-        public void bind() {
-            //updateDate();
-            mChildFirstName.setText(mChild.getFirstName());
-            mChildSurname.setText(mChild.getLastName());
-            mChildId.setText(mChild.getIdNumber());
-            mBirthFacility.setText(mChild.getBirthFacility());
-            mChildStayingWith.setText(mChild.getChildStayingWith());
-            mAddress.setText(mChild.getAddress());
-            mDatePicker.setText(mChild.getDob().toString());
-        }
-
-        private void updateDate() {
-            mDatePicker.setText(mChild.getDob().toString());
-        }
-
-        @Override
-        public void onClick(View view) {
-            FragmentManager fm = getFragmentManager();
-            DatePickerFragment datePickerFragment = DatePickerFragment.newInstance(mChild.getDob());
-            datePickerFragment.setTargetFragment(PersonalDataFragment.this, DatePickerFragment.CHILD_TITLE);
-            datePickerFragment.show(fm, DATE_PICKER_TAG);
-        }
-    }
-    //PersonalDataChildHolder ViewHolder
-    ///////////////////////////////////////////////////////////////
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         Log.i("PersonalDataFragment", "onActivityResult Called");
         if (resultCode != Activity.RESULT_OK) {
@@ -200,8 +129,12 @@ public class PersonalDataFragment extends Fragment {
         if (requestCode == DatePickerFragment.CHILD_TITLE) {
             Date date = (Date) data.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
             mChild.setDob(date);
-            mRecyclerView.getAdapter().notifyItemChanged(0);
+            updateDate();
         }
+    }
+
+    private void updateDate() {
+        mDatePicker.setText(mChild.getDob().toString());
     }
 
 
