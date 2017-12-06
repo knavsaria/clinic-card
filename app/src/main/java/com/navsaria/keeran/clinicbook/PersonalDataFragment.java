@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.Date;
 import java.util.UUID;
@@ -31,6 +32,7 @@ public class PersonalDataFragment extends Fragment implements View.OnClickListen
 
 
     private Child mChild;
+    private ChildList mChildList;
 
     //Child Info CardView
     private Button mDatePicker;
@@ -65,6 +67,7 @@ public class PersonalDataFragment extends Fragment implements View.OnClickListen
             UUID childId = (UUID) getArguments().getSerializable(ARGS_ID);
             mChild = ChildList.getChildList(getActivity()).getChild(childId);
         }
+        mChildList = ChildList.getChildList(getActivity());
 
     }
 
@@ -123,21 +126,86 @@ public class PersonalDataFragment extends Fragment implements View.OnClickListen
 
         mChildId = (EditText) v.findViewById(R.id.edit_text_child_id);
         mChildId.setText(mChild.getIdNumber());
+        mChildId.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                mChild.setIdNumber(charSequence.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
 
         mBirthFacility = (EditText) v.findViewById(R.id.edit_text_facility);
         mBirthFacility.setText(mChild.getBirthFacility());
+        mBirthFacility.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                mChild.setBirthFacility(charSequence.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
 
         mChildStayingWith = (EditText) v.findViewById(R.id.edit_text_child_stay_with);
         mChildStayingWith.setText(mChild.getChildStayingWith());
+        mChildStayingWith.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                mChild.setChildStayingWith(charSequence.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
 
         mAddress = (EditText) v.findViewById(R.id.edit_text_child_address);
         mAddress.setText(mChild.getAddress());
+        mAddress.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                mChild.setAddress(charSequence.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
 
         mSaveChildButton = (Button) v.findViewById(R.id.child_info_save_button);
         mSaveChildButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
-
+                mChildList.updateChild(mChild);
+                Toast.makeText(getActivity(), getString(R.string.toast_save_successful), Toast.LENGTH_LONG).show();
             }
 
         });
@@ -172,8 +240,6 @@ public class PersonalDataFragment extends Fragment implements View.OnClickListen
 
     private void updateView() {
         mDatePicker.setText(mChild.getDob().toString());
-        mChildFirstName.setText(mChild.getFirstName());
-        mChildSurname.setText(mChild.getLastName());
     }
 
 
