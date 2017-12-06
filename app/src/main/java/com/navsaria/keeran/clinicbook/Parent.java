@@ -1,20 +1,36 @@
 package com.navsaria.keeran.clinicbook;
 
 import java.util.Date;
+import java.util.UUID;
 
 /**
  * Created by keeran on 2017/12/05.
  */
 
 public class Parent {
+
+    private UUID mId;
     private String mFirstName;
     private String mLastName;
-    private String mId;
+    private String mIdNumber;
     private int mNoOfBirths;
     private int mNoOfAlive;
     private String[] mmReasonsForDeaths;
     private boolean mIsAMom;
     private Date mDob;
+
+    public Parent() {
+        this(UUID.randomUUID());
+        mDob = new Date();
+    }
+
+    public Parent(UUID id) {
+        mId = id;
+    }
+
+    public UUID getId() {
+        return mId;
+    }
 
     public String getFirstName() {
         return mFirstName;
@@ -32,12 +48,12 @@ public class Parent {
         mLastName = lastName;
     }
 
-    public String getId() {
-        return mId;
+    public String getIdNumber() {
+        return mIdNumber;
     }
 
-    public void setId(String id) {
-        mId = id;
+    public void setIdNumber(String idNumber) {
+        mIdNumber = idNumber;
     }
 
     public int getNoOfBirths() {

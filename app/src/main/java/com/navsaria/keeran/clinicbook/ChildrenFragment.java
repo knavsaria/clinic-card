@@ -70,8 +70,8 @@ public class ChildrenFragment extends Fragment {
             child.setFirstName(firstName);
             child.setLastName(lastName);
             child.setBoy(isBoy);
-            child.setFather(new Parent());
-            child.setMother(new Parent());
+            child.setFather(new Parent().getId());
+            child.setMother(new Parent().getId());
             mChildList.addChild(child);
             updateUI();
         }

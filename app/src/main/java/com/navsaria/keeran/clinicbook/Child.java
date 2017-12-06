@@ -11,14 +11,13 @@ import java.util.UUID;
 public class Child implements Serializable {
 
     private UUID mId;
-
     private String mIdNumber;
     private String mFirstName;
     private String mLastName;
     private boolean mIsBoy;
     private Date mDob;
-    private Parent mMother;
-    private Parent mFather;
+    private UUID mMother;
+    private UUID mFather;
     private String mBirthFacility;
     private String mChildStayingWith;
     private String mAddress;
@@ -47,19 +46,19 @@ public class Child implements Serializable {
         mAddress = address;
     }
 
-    public Parent getMother() {
+    public UUID getMother() {
         return mMother;
     }
 
-    public void setMother(Parent mother) {
+    public void setMother(UUID mother) {
         mMother = mother;
     }
 
-    public Parent getFather() {
+    public UUID getFather() {
         return mFather;
     }
 
-    public void setFather(Parent father) {
+    public void setFather(UUID father) {
         mFather = father;
     }
 

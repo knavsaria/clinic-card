@@ -40,6 +40,7 @@ public class PersonalDataFragment extends Fragment implements View.OnClickListen
     private EditText mBirthFacility;
     private EditText mChildStayingWith;
     private EditText mAddress;
+    private Button mSaveChildButton;
     //Child Info CardView
 
 
@@ -131,6 +132,15 @@ public class PersonalDataFragment extends Fragment implements View.OnClickListen
 
         mAddress = (EditText) v.findViewById(R.id.edit_text_child_address);
         mAddress.setText(mChild.getAddress());
+
+        mSaveChildButton = (Button) v.findViewById(R.id.child_info_save_button);
+        mSaveChildButton.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View view) {
+
+            }
+
+        });
 
         updateView();
 

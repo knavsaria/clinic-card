@@ -114,6 +114,12 @@ public class ChildList {
             values.put(ChildTable.Cols.GENDER, 0);
         }
         values.put(ChildTable.Cols.DATE, child.getDob().getTime());
+        values.put(ChildTable.Cols.ID_NUMBER, child.getIdNumber());
+        values.put(ChildTable.Cols.MOTHER_UUID, child.getMother().toString());
+        values.put(ChildTable.Cols.FATHER_UUID, child.getFather().toString());
+        values.put(ChildTable.Cols.BIRTH_FACILITY, child.getBirthFacility());
+        values.put(ChildTable.Cols.CHILD_STAYING_WITH, child.getChildStayingWith());
+        values.put(ChildTable.Cols.ADDRESS, child.getAddress());
 
         return values;
     }
