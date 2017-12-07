@@ -230,12 +230,41 @@ public class PersonalDataFragment extends Fragment implements View.OnClickListen
             }
         });
 
-        boolean isBoy = false;
-        int genderSelected = mIsBoy.getCheckedRadioButtonId();
-        if (genderSelected == R.id.child_is_boy) {
-            isBoy = true;
-        } else if (genderSelected == R.id.child_is_girl) {
-            isBoy = false;
+        mIsTwin = (RadioGroup) v.findViewById(R.id.child_twin);
+        mIsTwin.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if (i == R.id.child_is_twin) {
+                    Toast.makeText(getActivity(), "Baby is twin", Toast.LENGTH_SHORT).show();
+                } else if (i == R.id.child_is_not_twin) {
+                    Toast.makeText(getActivity(), "Baby is NOT twin", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        mIsDisabled = (RadioGroup) v.findViewById(R.id.child_disability);
+        mIsDisabled.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if (i == R.id.child_has_disability) {
+                    Toast.makeText(getActivity(), "Baby is disabled", Toast.LENGTH_SHORT).show();
+                } else if (i == R.id.child_has_no_disability) {
+                    Toast.makeText(getActivity(), "Baby is NOT disabled", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        mMomNeedsSupport = (RadioGroup) v.findViewById(R.id.mother_special_needs);
+        mMomNeedsSupport.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if (i == R.id.mother_needs_support) {
+                    Toast.makeText(getActivity(), "Mother needs support for baby", Toast.LENGTH_SHORT).show();
+                } else if (i == R.id.mother_needs_no_support) {
+                    Toast.makeText(getActivity(), "Mother does NOT need support for baby", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         ///// Child CardView
 
