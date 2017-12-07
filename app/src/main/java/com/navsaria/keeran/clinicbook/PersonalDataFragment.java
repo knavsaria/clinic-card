@@ -13,8 +13,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.Date;
@@ -55,8 +57,8 @@ public class PersonalDataFragment extends Fragment implements View.OnClickListen
     private EditText mMotherFirstName;
     private EditText mMotherSurname;
     private EditText mMotherIdNumber;
-    private EditText mMotherNoOfBirths;
-    private EditText mMotherNoAlive;
+    private Spinner mMotherNoOfBirths;
+    private Spinner mMotherNoAlive;
     //Mother Info CardView
 
 
@@ -293,6 +295,20 @@ public class PersonalDataFragment extends Fragment implements View.OnClickListen
 
             }
         });
+
+        mMotherNoOfBirths = (Spinner) v.findViewById(R.id.spinner_number_of_births);
+        ArrayAdapter<CharSequence> adapterBirths = ArrayAdapter.createFromResource(getActivity(),
+                R.array.number_one_to_twenty, android.R.layout.simple_spinner_item);
+        adapterBirths.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mMotherNoOfBirths.setAdapter(adapterBirths);
+
+
+        mMotherNoAlive= (Spinner) v.findViewById(R.id.spinner_number_of_alive);
+        ArrayAdapter<CharSequence> adapterAlive = ArrayAdapter.createFromResource(getActivity(),
+                R.array.number_one_to_twenty, android.R.layout.simple_spinner_item);
+        adapterAlive.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mMotherNoAlive.setAdapter(adapterAlive);
+
 
         ///// Mother CardView
 

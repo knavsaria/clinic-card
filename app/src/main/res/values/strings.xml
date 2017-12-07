@@ -39,4 +39,6 @@
     <string name="labelButton_allergies">Allergies</string>
     <string name="save_button_child">Save Child Info</string>
     <string name="toast_save_successful">Successfully Saved Info</string>
+    <string name="label_number_of_births">Number of birth\'s</string>
+    <string name="label_number_of_alive">Number of children still alive</string>
 </resources>
