@@ -41,4 +41,10 @@
     <string name="toast_save_successful">Successfully Saved Info</string>
     <string name="label_number_of_births">Number of birth\'s</string>
     <string name="label_number_of_alive">Number of children still alive</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="label_baby_twin">Is baby a twin, triplet, etc.</string>
+    <string name="label_baby_disability">Any disability or defects present</string>
+    <string name="label_mother_special_needs">Does the mother need additional support to care for the child</string>
+
 </resources>

@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -50,6 +51,11 @@ public class PersonalDataFragment extends Fragment implements View.OnClickListen
     private EditText mChildStayingWith;
     private EditText mAddress;
     private Button mSaveChildButton;
+    private RadioGroup mIsTwin;
+    private RadioGroup mIsDisabled;
+    private RadioGroup mMomNeedsSupport;
+
+
     //Child Info CardView
 
 
@@ -223,6 +229,13 @@ public class PersonalDataFragment extends Fragment implements View.OnClickListen
 
             }
         });
+
+        boolean isBoy = false;
+        int genderSelected = mIsBoy.getCheckedRadioButtonId();
+        if (genderSelected == R.id.child_is_boy) {
+            isBoy = true;
+        } else if (genderSelected == R.id.child_is_girl) {
+            isBoy = false;
 
         ///// Child CardView
 
