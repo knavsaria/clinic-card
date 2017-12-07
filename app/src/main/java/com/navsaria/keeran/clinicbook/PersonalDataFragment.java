@@ -227,15 +227,72 @@ public class PersonalDataFragment extends Fragment implements View.OnClickListen
         ///// Mother CardView
         mMotherDatePicker = (Button) v.findViewById(R.id.dob_mother_button);
         mMotherDatePicker.setText(mMother.getDob().toString());
+        mMotherDatePicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fm = getFragmentManager();
+                DatePickerFragment datePickerFragment = DatePickerFragment.newInstance(mMother.getDob());
+                datePickerFragment.setTargetFragment(PersonalDataFragment.this, DatePickerFragment.MOTHER_TITLE);
+                datePickerFragment.show(fm, DATE_PICKER_TAG);
+            }
+        });
 
         mMotherFirstName = (EditText) v.findViewById(R.id.edit_text_mother_firstname);
         mMotherFirstName.setText(mMother.getFirstName());
+        mMotherFirstName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                mMother.setFirstName(charSequence.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
 
         mMotherSurname = (EditText) v.findViewById(R.id.edit_text_mother_surname);
-        mMotherFirstName.setText(mMother.getLastName());
+        mMotherSurname.setText(mMother.getLastName());
+        mMotherSurname.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                mMother.setLastName(charSequence.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
 
         mMotherIdNumber = (EditText) v.findViewById(R.id.edit_text_mother_id_number);
         mMotherIdNumber.setText(mMother.getIdNumber());
+        mMotherIdNumber.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                mMother.setIdNumber(charSequence.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
 
         ///// Mother CardView
 
@@ -244,6 +301,7 @@ public class PersonalDataFragment extends Fragment implements View.OnClickListen
 
             public void onClick(View view) {
                 mChildList.updateChild(mChild);
+                mParentList.updateParent(mMother);
                 Toast.makeText(getActivity(), getString(R.string.toast_save_successful), Toast.LENGTH_LONG).show();
             }
 
@@ -274,6 +332,10 @@ public class PersonalDataFragment extends Fragment implements View.OnClickListen
             Date date = (Date) data.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
             mChild.setDob(date);
             updateView();
+        } else if (requestCode == DatePickerFragment.MOTHER_TITLE) {
+            Date date = (Date) data.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
+            mMother.setDob(date);
+            mMotherDatePicker.setText(mMother.getDob().toString());
         }
     }
 
