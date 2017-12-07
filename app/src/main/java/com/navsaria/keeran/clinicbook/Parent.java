@@ -23,6 +23,8 @@ public class Parent implements Serializable {
     public Parent() {
         this(UUID.randomUUID());
         mDob = new Date();
+        mNoOfBirths = 0;
+        mNoOfAlive = 0;
     }
 
     public Parent(UUID id) {
