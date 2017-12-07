@@ -33,12 +33,15 @@ public class PersonalDataFragment extends Fragment implements View.OnClickListen
     private static final String ARGS_ID = "child_id";
     public static final String INSTANCE_STATE_CHILD = "com.navsaria.keeran.mchild";
     public static final String INSTANCE_STATE_MOTHER = "com.navsaria.keeran.mMother";
+    public static final String INSTANCE_STATE_FATHER = "com.navsaria.keeran.mFather";
+
 
     private final String DATE_PICKER_TAG = "com.navsaria.keeran.child.dataPicker";
 
 
     private Child mChild;
     private Parent mMother;
+    private Parent mFather;
     private ChildList mChildList;
     private ParentList mParentList;
 
@@ -68,6 +71,13 @@ public class PersonalDataFragment extends Fragment implements View.OnClickListen
     private Spinner mMotherNoAlive;
     //Mother Info CardView
 
+    //Father Info CardView
+    private Button mFatherDatePicker;
+    private EditText mFatherFirstName;
+    private EditText mFatherSurname;
+    private EditText mFatherIdNumber;
+    //Father Info CardView
+
 
 
 
@@ -90,10 +100,12 @@ public class PersonalDataFragment extends Fragment implements View.OnClickListen
         if (savedInstanceState != null) {
             mChild = (Child) savedInstanceState.getSerializable(INSTANCE_STATE_CHILD);
             mMother = (Parent) savedInstanceState.getSerializable(INSTANCE_STATE_MOTHER);
+            mFather = (Parent) savedInstanceState.getSerializable(INSTANCE_STATE_FATHER);
         } else {
             UUID childId = (UUID) getArguments().getSerializable(ARGS_ID);
             mChild = ChildList.getChildList(getActivity()).getChild(childId);
             mMother = mParentList.getParent(mChild.getMother());
+            mFather = mParentList.getParent(mChild.getFather());
         }
         mChildList = ChildList.getChildList(getActivity());
 
@@ -104,6 +116,7 @@ public class PersonalDataFragment extends Fragment implements View.OnClickListen
         super.onSaveInstanceState(outState);
         outState.putSerializable(INSTANCE_STATE_CHILD, mChild);
         outState.putSerializable(INSTANCE_STATE_MOTHER, mMother);
+        outState.putSerializable(INSTANCE_STATE_FATHER, mFather);
     }
 
     @Nullable
@@ -386,12 +399,85 @@ public class PersonalDataFragment extends Fragment implements View.OnClickListen
 
         ///// Mother CardView
 
+        ///// Father CardView
+        mFatherDatePicker = (Button) v.findViewById(R.id.dob_father_button);
+        mFatherDatePicker.setText(mFather.getDob().toString());
+        mFatherDatePicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fm = getFragmentManager();
+                DatePickerFragment datePickerFragment = DatePickerFragment.newInstance(mFather.getDob());
+                datePickerFragment.setTargetFragment(PersonalDataFragment.this, DatePickerFragment.FATHER_TITLE);
+                datePickerFragment.show(fm, DATE_PICKER_TAG);
+            }
+        });
+
+        mFatherFirstName = (EditText) v.findViewById(R.id.edit_text_father_firstname);
+        mFatherFirstName.setText(mFather.getFirstName());
+        mFatherFirstName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                mFather.setFirstName(charSequence.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        mFatherSurname = (EditText) v.findViewById(R.id.edit_text_father_surname);
+        mFatherSurname.setText(mFather.getLastName());
+        mFatherSurname.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                mFather.setLastName(charSequence.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        mFatherIdNumber = (EditText) v.findViewById(R.id.edit_text_father_id_number);
+        mFatherIdNumber.setText(mFather.getIdNumber());
+        mFatherIdNumber.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                mFather.setIdNumber(charSequence.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        ///// Father CardView
+
         mSaveChildButton = (Button) v.findViewById(R.id.child_info_save_button);
         mSaveChildButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
                 mChildList.updateChild(mChild);
                 mParentList.updateParent(mMother);
+                mParentList.updateParent(mFather);
                 Toast.makeText(getActivity(), getString(R.string.toast_save_successful), Toast.LENGTH_LONG).show();
             }
 
@@ -426,6 +512,10 @@ public class PersonalDataFragment extends Fragment implements View.OnClickListen
             Date date = (Date) data.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
             mMother.setDob(date);
             mMotherDatePicker.setText(mMother.getDob().toString());
+        } else if (requestCode == DatePickerFragment.FATHER_TITLE) {
+            Date date = (Date) data.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
+            mFather.setDob(date);
+            mFatherDatePicker.setText(mFather.getDob().toString());
         }
     }
 
