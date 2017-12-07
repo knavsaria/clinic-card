@@ -27,4 +27,27 @@ public class ChildDbSchema {
         }// End of Cols
     }// End of Child Table
 
+    public static final class ParentTable {
+        public static final String NAME = "parents";
+
+        public static final class Cols {
+            public static final String UUID = "uuid";
+            public static final String FIRST_NAME = "name";
+            public static final String SURNAME = "surname";
+            public static final String GENDER = "gender";
+            public static final String DATE = "date";
+            public static final String ID_NUMBER = "idNum";
+            public static final String NO_OF_BIRTHS = "noOfBirths";
+            public static final String NO_OF_ALIVE = "noOfAlive";
+            public static final String BIRTH_FACILITY = "birthFacility";
+            public static final String CHILD_STAYING_WITH = "childStayingWith";
+            public static final String ADDRESS = "address";
+
+
+
+        }// End of Cols
+    }// End of Parent Table
+
+
+
 }

@@ -1,5 +1,6 @@
 package com.navsaria.keeran.clinicbook;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
 
@@ -7,7 +8,7 @@ import java.util.UUID;
  * Created by keeran on 2017/12/05.
  */
 
-public class Parent {
+public class Parent implements Serializable {
 
     private UUID mId;
     private String mFirstName;
@@ -15,8 +16,8 @@ public class Parent {
     private String mIdNumber;
     private int mNoOfBirths;
     private int mNoOfAlive;
-    private String[] mmReasonsForDeaths;
-    private boolean mIsAMom;
+   // private String[] mmReasonsForDeaths;
+    private boolean mIsADad;
     private Date mDob;
 
     public Parent() {
@@ -72,20 +73,20 @@ public class Parent {
         mNoOfAlive = noOfAlive;
     }
 
-    public String[] getMmReasonsForDeaths() {
-        return mmReasonsForDeaths;
+//    public String[] getMmReasonsForDeaths() {
+//        return mmReasonsForDeaths;
+//    }
+//
+//    public void setMmReasonsForDeaths(String[] mmReasonsForDeaths) {
+//        this.mmReasonsForDeaths = mmReasonsForDeaths;
+//    }
+
+    public boolean isADad() {
+        return mIsADad;
     }
 
-    public void setMmReasonsForDeaths(String[] mmReasonsForDeaths) {
-        this.mmReasonsForDeaths = mmReasonsForDeaths;
-    }
-
-    public boolean isAMom() {
-        return mIsAMom;
-    }
-
-    public void setAMom(boolean AMom) {
-        mIsAMom = AMom;
+    public void setADad(boolean aDad) {
+        mIsADad = aDad;
     }
 
     public Date getDob() {

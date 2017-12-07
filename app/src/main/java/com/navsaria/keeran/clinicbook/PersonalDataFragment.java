@@ -28,11 +28,15 @@ public class PersonalDataFragment extends Fragment implements View.OnClickListen
 
     private static final String ARGS_ID = "child_id";
     public static final String INSTANCE_STATE_CHILD = "com.navsaria.keeran.mchild";
+    public static final String INSTANCE_STATE_MOTHER = "com.navsaria.keeran.mMother";
+
     private final String DATE_PICKER_TAG = "com.navsaria.keeran.child.dataPicker";
 
 
     private Child mChild;
+    private Parent mMother;
     private ChildList mChildList;
+    private ParentList mParentList;
 
     //Child Info CardView
     private Button mDatePicker;
@@ -44,6 +48,17 @@ public class PersonalDataFragment extends Fragment implements View.OnClickListen
     private EditText mAddress;
     private Button mSaveChildButton;
     //Child Info CardView
+
+
+    //Mother Info CardView
+    private Button mMotherDatePicker;
+    private EditText mMotherFirstName;
+    private EditText mMotherSurname;
+    private EditText mMotherIdNumber;
+    private EditText mMotherNoOfBirths;
+    private EditText mMotherNoAlive;
+    //Mother Info CardView
+
 
 
 
@@ -61,11 +76,15 @@ public class PersonalDataFragment extends Fragment implements View.OnClickListen
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        mParentList = ParentList.getParentList(getActivity());
+
         if (savedInstanceState != null) {
             mChild = (Child) savedInstanceState.getSerializable(INSTANCE_STATE_CHILD);
+            mMother = (Parent) savedInstanceState.getSerializable(INSTANCE_STATE_MOTHER);
         } else {
             UUID childId = (UUID) getArguments().getSerializable(ARGS_ID);
             mChild = ChildList.getChildList(getActivity()).getChild(childId);
+            mMother = mParentList.getParent(mChild.getMother());
         }
         mChildList = ChildList.getChildList(getActivity());
 
@@ -75,6 +94,7 @@ public class PersonalDataFragment extends Fragment implements View.OnClickListen
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putSerializable(INSTANCE_STATE_CHILD, mChild);
+        outState.putSerializable(INSTANCE_STATE_MOTHER, mMother);
     }
 
     @Nullable
@@ -83,6 +103,7 @@ public class PersonalDataFragment extends Fragment implements View.OnClickListen
         View v = inflater.inflate(R.layout.fragment_personal_data, container, false);
                 ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(mChild.getFirstName() + " " + mChild.getLastName());
 
+        ///// Child CardView
         mDatePicker = (Button) v.findViewById(R.id.dob_child_button);
         mDatePicker.setOnClickListener(this);
 
@@ -199,6 +220,24 @@ public class PersonalDataFragment extends Fragment implements View.OnClickListen
 
             }
         });
+
+        ///// Child CardView
+
+
+        ///// Mother CardView
+        mMotherDatePicker = (Button) v.findViewById(R.id.dob_mother_button);
+        mMotherDatePicker.setText(mMother.getDob().toString());
+
+        mMotherFirstName = (EditText) v.findViewById(R.id.edit_text_mother_firstname);
+        mMotherFirstName.setText(mMother.getFirstName());
+
+        mMotherSurname = (EditText) v.findViewById(R.id.edit_text_mother_surname);
+        mMotherFirstName.setText(mMother.getLastName());
+
+        mMotherIdNumber = (EditText) v.findViewById(R.id.edit_text_mother_id_number);
+        mMotherIdNumber.setText(mMother.getIdNumber());
+
+        ///// Mother CardView
 
         mSaveChildButton = (Button) v.findViewById(R.id.child_info_save_button);
         mSaveChildButton.setOnClickListener(new View.OnClickListener() {

@@ -62,6 +62,7 @@ public class ChildrenFragment extends Fragment {
             return;
         }
 
+        ParentList mParentList = ParentList.getParentList(getActivity());
         if (requestCode == CHILD_DETAILS) {
             Child child = new Child();
             String firstName = data.getStringExtra(AddChildFragment.FIRST_NAME);
@@ -71,11 +72,15 @@ public class ChildrenFragment extends Fragment {
             child.setLastName(lastName);
             child.setBoy(isBoy);
             Parent father = new Parent();
+            father.setADad(true);
             Parent mother = new Parent();
+            mother.setADad(false);
             child.setFather(father.getId());
             child.setMother(mother.getId());
             mChildList.addChild(child);
             //Add father and mother to parent database
+            mParentList.addParent(father);
+            mParentList.addParent(mother);
             updateUI();
         }
     }
