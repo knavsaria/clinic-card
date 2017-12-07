@@ -11,16 +11,58 @@ import java.util.UUID;
 public class Child implements Serializable {
 
     private UUID mId;
+    private UUID mMother;
+    private UUID mFather;
     private String mIdNumber;
     private String mFirstName;
     private String mLastName;
-    private boolean mIsBoy;
-    private Date mDob;
-    private UUID mMother;
-    private UUID mFather;
     private String mBirthFacility;
     private String mChildStayingWith;
     private String mAddress;
+    private boolean mIsBoy;
+    private boolean mIsTwin;
+    private boolean mIsDisabled;
+    private boolean mMotherNeedsSupport;
+    private Date mDob;
+
+    public Child() {
+        this(UUID.randomUUID());
+        mDob = new Date();
+        mIsTwin = false;
+        mIsDisabled = false;
+        mMotherNeedsSupport = false;
+    }
+
+    public Child(UUID id) {
+        mId = id;
+    }
+
+
+    public boolean isTwin() {
+        return mIsTwin;
+    }
+
+    public void setTwin(boolean twin) {
+        mIsTwin = twin;
+    }
+
+    public boolean isDisabled() {
+        return mIsDisabled;
+    }
+
+    public void setDisabled(boolean disabled) {
+        mIsDisabled = disabled;
+    }
+
+    public boolean isMotherNeedsSupport() {
+        return mMotherNeedsSupport;
+    }
+
+    public void setMotherNeedsSupport(boolean motherNeedsSupport) {
+        mMotherNeedsSupport = motherNeedsSupport;
+    }
+
+
 
     public String getBirthFacility() {
         return mBirthFacility;
@@ -76,15 +118,6 @@ public class Child implements Serializable {
 
     public void setDob(Date dob) {
         mDob = dob;
-    }
-
-    public Child() {
-        this(UUID.randomUUID());
-        mDob = new Date();
-    }
-
-    public Child(UUID id) {
-        mId = id;
     }
 
     public String getFirstName() {

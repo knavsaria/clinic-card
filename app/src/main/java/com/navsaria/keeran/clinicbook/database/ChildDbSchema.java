@@ -21,6 +21,9 @@ public class ChildDbSchema {
             public static final String BIRTH_FACILITY = "birthFacility";
             public static final String CHILD_STAYING_WITH = "childStayingWith";
             public static final String ADDRESS = "address";
+            public static final String TWIN = "twin";
+            public static final String DISABILITY = "disability";
+            public static final String MOTHER_SUPPORT = "motherSupport";
 
 
 

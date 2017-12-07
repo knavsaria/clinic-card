@@ -120,6 +120,23 @@ public class ChildList {
         values.put(ChildTable.Cols.BIRTH_FACILITY, child.getBirthFacility());
         values.put(ChildTable.Cols.CHILD_STAYING_WITH, child.getChildStayingWith());
         values.put(ChildTable.Cols.ADDRESS, child.getAddress());
+        if (child.isTwin()) {
+            values.put(ChildTable.Cols.TWIN, 1);
+        } else {
+            values.put(ChildTable.Cols.TWIN, 0);
+        }
+
+        if (child.isDisabled()) {
+            values.put(ChildTable.Cols.DISABILITY, 1);
+        } else {
+            values.put(ChildTable.Cols.DISABILITY, 0);
+        }
+
+        if (child.isMotherNeedsSupport()) {
+            values.put(ChildTable.Cols.MOTHER_SUPPORT, 1);
+        } else {
+            values.put(ChildTable.Cols.MOTHER_SUPPORT, 0);
+        }
 
         return values;
     }

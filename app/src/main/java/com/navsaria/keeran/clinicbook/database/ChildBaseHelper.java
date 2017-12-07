@@ -33,7 +33,10 @@ public class ChildBaseHelper extends SQLiteOpenHelper {
                 ChildTable.Cols.FATHER_UUID + ", " +
                 ChildTable.Cols.BIRTH_FACILITY + ", " +
                 ChildTable.Cols.CHILD_STAYING_WITH + ", " +
-                ChildTable.Cols.ADDRESS +
+                ChildTable.Cols.ADDRESS + ", " +
+                ChildTable.Cols.TWIN + ", " +
+                ChildTable.Cols.DISABILITY + ", " +
+                ChildTable.Cols.MOTHER_SUPPORT +
                 ")"
         );
     }

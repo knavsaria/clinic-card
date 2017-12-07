@@ -31,6 +31,9 @@ public class ChildCursorWrapper extends CursorWrapper {
         String birthFacility = getString(getColumnIndex(ChildTable.Cols.BIRTH_FACILITY));
         String childStayingWith = getString(getColumnIndex(ChildTable.Cols.CHILD_STAYING_WITH));
         String address = getString(getColumnIndex(ChildTable.Cols.ADDRESS));
+        int twin = getInt(getColumnIndex(ChildTable.Cols.TWIN));
+        int disability = getInt(getColumnIndex(ChildTable.Cols.DISABILITY));
+        int momNeedsSupport = getInt(getColumnIndex(ChildTable.Cols.MOTHER_SUPPORT));
 
 
 
@@ -45,6 +48,9 @@ public class ChildCursorWrapper extends CursorWrapper {
         child.setBirthFacility(birthFacility);
         child.setChildStayingWith(childStayingWith);
         child.setAddress(address);
+        child.setTwin(twin != 0);
+        child.setDisabled(disability != 0);
+        child.setMotherNeedsSupport(momNeedsSupport != 0);
 
         return child;
     }

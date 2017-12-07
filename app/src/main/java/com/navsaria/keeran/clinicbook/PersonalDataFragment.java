@@ -231,37 +231,40 @@ public class PersonalDataFragment extends Fragment implements View.OnClickListen
         });
 
         mIsTwin = (RadioGroup) v.findViewById(R.id.child_twin);
+        mIsTwin.check((mChild.isTwin()) ? R.id.child_is_twin : R.id.child_is_not_twin);
         mIsTwin.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if (i == R.id.child_is_twin) {
-                    Toast.makeText(getActivity(), "Baby is twin", Toast.LENGTH_SHORT).show();
+                    mChild.setTwin(true);
                 } else if (i == R.id.child_is_not_twin) {
-                    Toast.makeText(getActivity(), "Baby is NOT twin", Toast.LENGTH_SHORT).show();
+                    mChild.setTwin(false);
                 }
             }
         });
 
         mIsDisabled = (RadioGroup) v.findViewById(R.id.child_disability);
+        mIsDisabled.check((mChild.isDisabled()) ? R.id.child_has_disability: R.id.child_has_no_disability);
         mIsDisabled.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if (i == R.id.child_has_disability) {
-                    Toast.makeText(getActivity(), "Baby is disabled", Toast.LENGTH_SHORT).show();
+                    mChild.setDisabled(true);
                 } else if (i == R.id.child_has_no_disability) {
-                    Toast.makeText(getActivity(), "Baby is NOT disabled", Toast.LENGTH_SHORT).show();
+                    mChild.setDisabled(false);
                 }
             }
         });
 
         mMomNeedsSupport = (RadioGroup) v.findViewById(R.id.mother_special_needs);
+        mMomNeedsSupport.check((mChild.isMotherNeedsSupport()) ? R.id.mother_needs_support : R.id.mother_needs_no_support);
         mMomNeedsSupport.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if (i == R.id.mother_needs_support) {
-                    Toast.makeText(getActivity(), "Mother needs support for baby", Toast.LENGTH_SHORT).show();
+                    mChild.setMotherNeedsSupport(true);
                 } else if (i == R.id.mother_needs_no_support) {
-                    Toast.makeText(getActivity(), "Mother does NOT need support for baby", Toast.LENGTH_SHORT).show();
+                    mChild.setMotherNeedsSupport(false);
                 }
             }
         });
