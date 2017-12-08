@@ -99,7 +99,6 @@ public class ParentList {
         );
 
         return new ParentCursorWrapper(cursor);
-
     }
 
     private static ContentValues getContentValues(Parent parent) {
