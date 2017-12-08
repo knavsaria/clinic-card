@@ -9,9 +9,12 @@ import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import java.util.Date;
 
 /**
  * Created by keeran on 2017/11/22.
@@ -52,6 +55,25 @@ public class ChildrenFragment extends Fragment {
                 addChildDialog.show(fragmentManager, ADD_CHILD_DIALOG);
             }
         });
+
+/*        Button testButton = (Button) v.findViewById(R.id.testButton);
+        testButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Vaccine vaccineTest = new Vaccine();
+                vaccineTest.setDateGiven(new Date());
+                vaccineTest.setBatchNumber("M5465");
+                vaccineTest.setAgeGroup(14);
+                vaccineTest.setSite("left arm");
+                vaccineTest.setVaccineCode("BCG");
+
+                VaccineList vaccineList = VaccineList.getVaccineList(getActivity());
+                vaccineList.addVaccine(vaccineTest);
+
+                Vaccine vaccineResult = vaccineList.getVaccine(vaccineTest.getId());
+                int i = 0;
+            }
+        });*/
 
         return v;
     }

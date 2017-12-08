@@ -38,7 +38,7 @@ public class VaccineList {
                 .getWritableDatabase();
     }
 
-    public List<Vaccine> getParents() {
+    public List<Vaccine> getVaccines() {
         List<Vaccine> allVaccines = new ArrayList<>();
 
         VaccineCursorWrapper cursor = queryVaccines(null, null);
@@ -61,7 +61,7 @@ public class VaccineList {
     }
 
     public Vaccine getVaccine(UUID id) {
-        VaccineCursorWrapper cursor = queryParents(
+        VaccineCursorWrapper cursor = queryVaccines(
                 VaccineTable.Cols.UUID + " = ?",
                 new String[] {id.toString()}
         );

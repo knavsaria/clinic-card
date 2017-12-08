@@ -48,5 +48,10 @@
     <string name="label_mother_special_needs">Does the mother need additional support to care for the child</string>
     <string name="label_father_id">Father\'s ID Number</string>
     <string name="personal_data_father_info">Father\'s Information</string>
+    <string name="label_age_group">Age Group: %1$d weeks</string>
+    <string name="label_batch_number">Batch number: %1$s</string>
+    <string name="label_vaccine_code">Vaccine Code: %1$s</string>
+    <string name="label_site">Site: %1$s</string>
+    <string name="label_vaccine_date">Vaccine Date: %1$s</string>
 
 </resources>

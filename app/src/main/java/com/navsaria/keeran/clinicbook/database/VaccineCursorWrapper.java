@@ -33,6 +33,7 @@ public class VaccineCursorWrapper extends CursorWrapper {
         vaccine.setAgeGroup(ageGroup);
         vaccine.setBatchNumber(batchNumber);
         vaccine.setVaccineCode(vaccineCode);
+        vaccine.setSite(site);
         vaccine.setDateGiven(new Date(date));
 
         return vaccine;
