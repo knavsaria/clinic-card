@@ -27,6 +27,8 @@ public class DatePickerFragment extends DialogFragment {
     public static final int CHILD_TITLE = 0;
     public static final int MOTHER_TITLE = 1;
     public static final int FATHER_TITLE = 2;
+    public static final int VACCINE_TITLE = 3;
+
 
     private DatePicker mDatePicker;
     private String mTitleSubject;
@@ -43,26 +45,34 @@ public class DatePickerFragment extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        Date date = (Date) getArguments().getSerializable((ARG_DATE));
+        int year = 2012;
+        int month = 7;
+        int day = 9;
 
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH);
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        if (getArguments() != null) {
+            Date date = (Date) getArguments().getSerializable((ARG_DATE));
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(date);
+            year = calendar.get(Calendar.YEAR);
+            month = calendar.get(Calendar.MONTH);
+            day = calendar.get(Calendar.DAY_OF_MONTH);
+        }
 
         View v = LayoutInflater.from(getActivity()).inflate(
                 R.layout.dialog_date, null);
 
         switch (getTargetRequestCode()){
             case CHILD_TITLE:
-                mTitleSubject = "Child";
+                mTitleSubject = "Child's Date of Birth";
                 break;
             case  MOTHER_TITLE:
-                mTitleSubject = "Mother";
+                mTitleSubject = "Mother's Date of Birth";
                 break;
             case FATHER_TITLE:
-                mTitleSubject = "Father";
+                mTitleSubject = "Father's Date of Birth";
+                break;
+            case VACCINE_TITLE:
+                mTitleSubject = "Date of Vaccination";
                 break;
             default:
                 break;
@@ -73,7 +83,7 @@ public class DatePickerFragment extends DialogFragment {
 
         return new AlertDialog.Builder(getActivity())
                 .setView(v)
-                .setTitle(getString(R.string.date_picker_title, mTitleSubject))
+                .setTitle(mTitleSubject)
                 .setPositiveButton(android.R.string.ok,
                         new DialogInterface.OnClickListener() {
                             @Override

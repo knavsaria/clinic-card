@@ -1,8 +1,11 @@
 package com.navsaria.keeran.clinicbook;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -25,6 +28,12 @@ import java.util.UUID;
 public class ImmunisationFragment extends Fragment {
 
     private static final String ARGS_ID = "child_id";
+
+    private final int ADD_VACCINE = 0;
+
+    private final String ADD_VACCINE_TAG = "com.navsaria.keeran.child.addVaccine";
+
+
 
     private RecyclerView mRecyclerView;
     private VaccineAdapter mAdapter;
@@ -54,24 +63,36 @@ public class ImmunisationFragment extends Fragment {
         addVaccineButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Random generator = new Random();
-                int ageGroup = generator.nextInt(15);
-                String batchNumber = "M" + generator.nextInt(50);
-                String vaccineCode = "BCM" + generator.nextInt(10);
-                String site = "Left arm";
-                Vaccine vaccine = new Vaccine();
-                vaccine.setAgeGroup(ageGroup);
-                vaccine.setBatchNumber(batchNumber);
-                vaccine.setVaccineCode(vaccineCode);
-                vaccine.setSite(site);
-                vaccine.setDateGiven(new Date());
-                mVaccineList.addVaccine(vaccine);
-                updateView();
+                FragmentManager fm = getFragmentManager();
+                AddVaccineFragment addVaccineFragment = new AddVaccineFragment();
+                addVaccineFragment .setTargetFragment(ImmunisationFragment.this, ADD_VACCINE);
+                addVaccineFragment.show(fm, ADD_VACCINE_TAG);
             }
         });
 
 
         return v;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode != Activity.RESULT_OK) {
+            return;
+        }
+
+        if (requestCode == ADD_VACCINE) {
+            int ageGroup = data.getIntExtra(AddVaccineFragment.AGE_GROUP, 0);
+            String vaccineCode = data.getStringExtra(AddVaccineFragment.VACCINE_CODE);
+            String batchNumber = data.getStringExtra(AddVaccineFragment.BATCH_NUMBER);
+            Date vaccineDate = (Date) data.getSerializableExtra(AddVaccineFragment.VACCINE_DATE);
+            Vaccine newVaccine = new Vaccine();
+            newVaccine.setAgeGroup(ageGroup);
+            newVaccine.setVaccineCode(vaccineCode);
+            newVaccine.setBatchNumber(batchNumber);
+            newVaccine.setDateGiven(vaccineDate);
+            mVaccineList.addVaccine(newVaccine);
+            updateView();
+        }
     }
 
     private void updateView() {

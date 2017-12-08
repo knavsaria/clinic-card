@@ -23,4 +23,20 @@
         <item>"19"</item>
         <item>"20"</item>
     </string-array>
+
+    <string-array
+        name="age_groups">
+        <item>"0"</item>
+        <item>"6"</item>
+        <item>"14"</item>
+        <item>"24"</item>
+    </string-array>
+
+    <string-array
+        name="vaccine_codes">
+        <item>BCM1</item>
+        <item>GFH4</item>
+        <item>HJD7</item>
+        <item>LKW9</item>
+    </string-array>
 </resources>
