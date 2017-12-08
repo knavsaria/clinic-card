@@ -24,9 +24,6 @@ public class ChildDbSchema {
             public static final String TWIN = "twin";
             public static final String DISABILITY = "disability";
             public static final String MOTHER_SUPPORT = "motherSupport";
-
-
-
         }// End of Cols
     }// End of Child Table
 
@@ -45,11 +42,21 @@ public class ChildDbSchema {
             public static final String BIRTH_FACILITY = "birthFacility";
             public static final String CHILD_STAYING_WITH = "childStayingWith";
             public static final String ADDRESS = "address";
-
-
-
         }// End of Cols
     }// End of Parent Table
+
+    public static final class VaccineTable {
+        public static final String NAME = "vaccines";
+
+        public static final class Cols {
+            public static final String UUID = "uuid";
+            public static final String AGE_GROUP = "ageGroup";
+            public static final String BATCH_NUMBER = "batchNumber";
+            public static final String VACCINE = "vaccine";
+            public static final String SITE = "site";
+            public static final String DATE = "date";
+        }// End of Cols
+    }// End of Vaccine Table
 
 
 
