@@ -59,11 +59,12 @@ public class ChildDetailsFragment extends Fragment implements View.OnClickListen
         Button personalDataButton = (Button) v.findViewById(R.id.button_personal_data);
         personalDataButton.setOnClickListener(this);
 
-        Button growthMeasurementsButton = (Button) v.findViewById(R.id.button_growth_measurements);
-        growthMeasurementsButton.setOnClickListener(new View.OnClickListener() {
+        Button immunisationsButton = (Button) v.findViewById(R.id.button_immunisations);
+        immunisationsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), mChild.getLastName() + " " + mChild.getFirstName(), Toast.LENGTH_SHORT).show();
+                Intent intent = ImmunisationActivity.newIntent(getActivity(), mChild.getId());
+                startActivity(intent);
             }
         });
         return  v;

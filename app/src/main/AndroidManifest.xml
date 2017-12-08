@@ -23,6 +23,9 @@
         <activity android:name=".PersonalDataActivity"
             android:parentActivityName=".ChildDetailsActivity">
         </activity>
-    </application>
+        <activity android:name=".ImmunisationActivity"
+            android:parentActivityName=".ChildDetailsActivity">
+        </activity>
+    </application>ImmunisationActivity
 
 </manifest>

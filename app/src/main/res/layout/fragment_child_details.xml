@@ -13,6 +13,12 @@
         android:text="@string/labelButton_personal_data" />
 
     <Button
+        android:id="@+id/button_immunisations"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/labelButton_immunisations"/>
+
+    <Button
         android:id="@+id/button_growth_measurements"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,12 +29,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/labelButton_growth_stages"/>
-
-    <Button
-        android:id="@+id/button_immunisations"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/labelButton_immunisations"/>
 
     <Button
         android:id="@+id/button_medications"
