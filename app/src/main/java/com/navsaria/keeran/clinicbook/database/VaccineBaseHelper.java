@@ -26,7 +26,7 @@ public class VaccineBaseHelper extends SQLiteOpenHelper {
                 VaccineTable.Cols.UUID + ", " +
                 VaccineTable.Cols.AGE_GROUP + ", " +
                 VaccineTable.Cols.BATCH_NUMBER + ", " +
-                VaccineTable.Cols.VACCINE + ", " +
+                VaccineTable.Cols.VACCINE_CODE + ", " +
                 VaccineTable.Cols.SITE + ", " +
                 VaccineTable.Cols.DATE +
                 ")"
@@ -39,5 +39,3 @@ public class VaccineBaseHelper extends SQLiteOpenHelper {
     }
 }
 
-
-}

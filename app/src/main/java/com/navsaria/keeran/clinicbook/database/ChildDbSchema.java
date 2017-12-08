@@ -52,7 +52,7 @@ public class ChildDbSchema {
             public static final String UUID = "uuid";
             public static final String AGE_GROUP = "ageGroup";
             public static final String BATCH_NUMBER = "batchNumber";
-            public static final String VACCINE = "vaccine";
+            public static final String VACCINE_CODE = "vaccine";
             public static final String SITE = "site";
             public static final String DATE = "date";
         }// End of Cols

@@ -12,9 +12,17 @@ public class Vaccine {
     private UUID mId;
     private int mAgeGroup;
     private String mBatchNumber;
-    private String mVaccine;
+    private String mVaccineCode;
     private String mSite;
     private Date mDateGiven;
+
+    public Vaccine() {
+        this(UUID.randomUUID());
+    }
+
+    public Vaccine(UUID id) {
+        mId = id;
+    }
 
     public UUID getId() {
         return mId;
@@ -36,12 +44,12 @@ public class Vaccine {
         mBatchNumber = batchNumber;
     }
 
-    public String getVaccine() {
-        return mVaccine;
+    public String getVaccineCode() {
+        return mVaccineCode;
     }
 
-    public void setVaccine(String vaccine) {
-        mVaccine = vaccine;
+    public void setVaccineCode(String vaccineCode) {
+        mVaccineCode = vaccineCode;
     }
 
     public String getSite() {
