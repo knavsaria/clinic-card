@@ -58,5 +58,6 @@
     <string name="label_add_batch_number">Add Batch Number</string>
     <string name="add_vaccine_title">Add Vaccine</string>
     <string name="label_vaccine_date_button">Add Vaccine Date</string>
+    <string name="label_vaccine_warning">Please enter %1$s</string>
 
 </resources>

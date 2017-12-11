@@ -22,6 +22,8 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.Date;
 
 /**
@@ -177,10 +179,22 @@ public class AddVaccineFragment extends DialogFragment {
 
                     @Override
                     public void onClick(View view) {
+//                        boolean batchError = false;
+//                        boolean dateError = false;
+//                        batchError = mBatchNumberValue;
+//                        dateError = mVaccineDateValue == null;
+                        TextView textViewWarning = (TextView) view.getRootView().findViewById(R.id.text_view_vaccine_warning);
+                        if (mBatchNumberValue == null) {
+                            textViewWarning.setText(getString(R.string.label_vaccine_warning, "a vaccine batch number"));
+                            textViewWarning.setVisibility(TextView.VISIBLE);
+                        } else if (mVaccineDateValue == null) {
+                            textViewWarning.setText(getString(R.string.label_vaccine_warning, "a vaccine date"));
+                            textViewWarning.setVisibility(TextView.VISIBLE);
+                        } else {
                             sendResult(Activity.RESULT_OK, mAgeGroupValue, mVaccineCodeValue, mBatchNumberValue,
                                     mVaccineDateValue);
                             alertDialog.dismiss();
-
+                        }
                     }
                 });
 
