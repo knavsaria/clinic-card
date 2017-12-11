@@ -30,16 +30,17 @@ public class Child implements Serializable {
 
     public Child() {
         this(UUID.randomUUID());
+
+    }
+
+    public Child(UUID id) {
+        mId = id;
         mDob = new Date();
         mIsTwin = false;
         mIsDisabled = false;
         mMotherNeedsSupport = false;
         mVaccines = new ArrayList<>();
         int i = 0;
-    }
-
-    public Child(UUID id) {
-        mId = id;
     }
 
 

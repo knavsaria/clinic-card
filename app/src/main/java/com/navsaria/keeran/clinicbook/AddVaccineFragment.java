@@ -54,16 +54,36 @@ public class AddVaccineFragment extends DialogFragment {
 
     private final String DATE_PICKER_TAG = "com.navsaria.keeran.child.dataPicker";
 
+    private final String INSTANCE_STATE_AGE_GROUP = "com.navsaria.keeran.child.mAgeGroupValue";
+
+    private final String INSTANCE_STATE_BATCH_NUMBER = "com.navsaria.keeran.child.mBatchNumberValue";
+
+    private final String INSTANCE_STATE_VACCINE_CODE = "com.navsaria.keeran.child.mVaccineCodeValue";
+
+    private final String INSTANCE_STATE_VACCINE_DATE = "com.navsaria.keeran.child.mVaccineDate";
 
 
-
-
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(INSTANCE_STATE_AGE_GROUP, mAgeGroupValue);
+        outState.putString(INSTANCE_STATE_BATCH_NUMBER, mBatchNumberValue);
+        outState.putString(INSTANCE_STATE_VACCINE_CODE, mVaccineCodeValue);
+        outState.putSerializable(INSTANCE_STATE_VACCINE_DATE, mVaccineDateValue);
+    }
 
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         View v = LayoutInflater.from(getActivity())
                 .inflate(R.layout.add_vaccine, null);
+
+        if (savedInstanceState != null) {
+            mAgeGroupValue = savedInstanceState.getInt(INSTANCE_STATE_AGE_GROUP);
+            mBatchNumberValue = savedInstanceState.getString(INSTANCE_STATE_BATCH_NUMBER);
+            mVaccineCodeValue = savedInstanceState.getString(INSTANCE_STATE_VACCINE_CODE);
+            mVaccineDateValue = (Date) savedInstanceState.getSerializable(INSTANCE_STATE_VACCINE_DATE);
+        }
 
         mAgeGroup = (Spinner) v.findViewById(R.id.spinner_age_group);
         ArrayAdapter<CharSequence> adapterAliveAgeGroup = ArrayAdapter.createFromResource(getActivity(),
@@ -121,7 +141,12 @@ public class AddVaccineFragment extends DialogFragment {
 
 
         mVaccineDate= (Button) v.findViewById(R.id.vaccine_date_button);
-        mVaccineDate.setText(R.string.label_vaccine_date_button);
+        if (mVaccineDateValue == null) {
+            mVaccineDate.setText(R.string.label_vaccine_date_button);
+        } else {
+            mVaccineDate.setText(mVaccineDateValue.toString());
+        }
+
         mVaccineDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

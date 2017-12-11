@@ -81,7 +81,11 @@ public class ImmunisationFragment extends Fragment {
     }
 
     private void getChildsListOfVaccines() {
+        List<String> test = mChild.getVaccines();
+        if (mChild.getVaccines().size() > 0) {
             mListOfVaccines = mVaccineList.getVaccines(mChild.getVaccines());
+        }
+
     }
 
     @Override
