@@ -184,7 +184,7 @@ public class AddVaccineFragment extends DialogFragment {
 //                        batchError = mBatchNumberValue;
 //                        dateError = mVaccineDateValue == null;
                         TextView textViewWarning = (TextView) view.getRootView().findViewById(R.id.text_view_vaccine_warning);
-                        if (mBatchNumberValue == null) {
+                        if (mBatchNumberValue == null || mBatchNumberValue.length() == 0) {
                             textViewWarning.setText(getString(R.string.label_vaccine_warning, "a vaccine batch number"));
                             textViewWarning.setVisibility(TextView.VISIBLE);
                         } else if (mVaccineDateValue == null) {
