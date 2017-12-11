@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.database.CursorWrapper;
 
 import com.navsaria.keeran.clinicbook.Child;
+import com.navsaria.keeran.clinicbook.ChildList;
 import com.navsaria.keeran.clinicbook.database.ChildDbSchema.ChildTable;
 
 import java.util.Date;
@@ -34,6 +35,7 @@ public class ChildCursorWrapper extends CursorWrapper {
         int twin = getInt(getColumnIndex(ChildTable.Cols.TWIN));
         int disability = getInt(getColumnIndex(ChildTable.Cols.DISABILITY));
         int momNeedsSupport = getInt(getColumnIndex(ChildTable.Cols.MOTHER_SUPPORT));
+        String childVaccines = getString(getColumnIndex(ChildTable.Cols.VACCINES));
 
 
 
@@ -51,6 +53,9 @@ public class ChildCursorWrapper extends CursorWrapper {
         child.setTwin(twin != 0);
         child.setDisabled(disability != 0);
         child.setMotherNeedsSupport(momNeedsSupport != 0);
+        if (childVaccines != null) {
+            child.setVaccines(ChildList.derialize(childVaccines));
+        }
 
         return child;
     }

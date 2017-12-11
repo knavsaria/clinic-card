@@ -24,6 +24,7 @@ public class ChildDbSchema {
             public static final String TWIN = "twin";
             public static final String DISABILITY = "disability";
             public static final String MOTHER_SUPPORT = "motherSupport";
+            public static final String VACCINES = "vaccines";
         }// End of Cols
     }// End of Child Table
 

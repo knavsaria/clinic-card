@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -38,6 +39,8 @@ public class ImmunisationFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private VaccineAdapter mAdapter;
     private VaccineList mVaccineList;
+    private List<Vaccine> mListOfVaccines;
+    private Child mChild;
 
     public static ImmunisationFragment newInstance(UUID childId) {
         Bundle args = new Bundle();
@@ -54,7 +57,10 @@ public class ImmunisationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_immunisation, container, false);
 
+        mListOfVaccines = new ArrayList<>();
+        mChild = ChildList.getChildList(getActivity()).getChild((UUID) getArguments().getSerializable(ARGS_ID));
         mVaccineList = VaccineList.getVaccineList(getActivity());
+        getChildsListOfVaccines();
         mRecyclerView = (RecyclerView) v.findViewById(R.id.vaccine_recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         updateView();
@@ -74,6 +80,10 @@ public class ImmunisationFragment extends Fragment {
         return v;
     }
 
+    private void getChildsListOfVaccines() {
+            mListOfVaccines = mVaccineList.getVaccines(mChild.getVaccines());
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode != Activity.RESULT_OK) {
@@ -86,11 +96,17 @@ public class ImmunisationFragment extends Fragment {
             String batchNumber = data.getStringExtra(AddVaccineFragment.BATCH_NUMBER);
             Date vaccineDate = (Date) data.getSerializableExtra(AddVaccineFragment.VACCINE_DATE);
             Vaccine newVaccine = new Vaccine();
+            //add new vaccine to child received in arguments of fragment
+            mChild.addVaccine(newVaccine.getId());
+            //then get the ChildList and update the child with this one
+            ChildList.getChildList(getActivity()).updateChild(mChild);
+
             newVaccine.setAgeGroup(ageGroup);
             newVaccine.setVaccineCode(vaccineCode);
             newVaccine.setBatchNumber(batchNumber);
             newVaccine.setDateGiven(vaccineDate);
             mVaccineList.addVaccine(newVaccine);
+            getChildsListOfVaccines();
             updateView();
         }
     }
@@ -98,18 +114,16 @@ public class ImmunisationFragment extends Fragment {
     private void updateView() {
 
             if (mAdapter == null) {
-                mAdapter = new VaccineAdapter(mVaccineList.getVaccines());
+                mAdapter = new VaccineAdapter(mListOfVaccines);
                 mRecyclerView.setAdapter(mAdapter);
             } else {
-                mAdapter.setVaccineList(mVaccineList.getVaccines());
+                mAdapter.setVaccineList(mListOfVaccines);
                 mAdapter.notifyDataSetChanged();
             }
     }
 
 
     public class VaccineHolder extends RecyclerView.ViewHolder {
-
-
 
         public VaccineHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.vaccine_list_item, parent, false));

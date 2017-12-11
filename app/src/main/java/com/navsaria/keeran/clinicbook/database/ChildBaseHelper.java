@@ -36,7 +36,8 @@ public class ChildBaseHelper extends SQLiteOpenHelper {
                 ChildTable.Cols.ADDRESS + ", " +
                 ChildTable.Cols.TWIN + ", " +
                 ChildTable.Cols.DISABILITY + ", " +
-                ChildTable.Cols.MOTHER_SUPPORT +
+                ChildTable.Cols.MOTHER_SUPPORT + ", " +
+                ChildTable.Cols.VACCINES +
                 ")"
         );
     }

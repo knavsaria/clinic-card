@@ -55,6 +55,14 @@ public class VaccineList {
         return allVaccines;
     }
 
+    public List<Vaccine> getVaccines(List<String> vaccineIds) {
+        List<Vaccine> allVaccines = new ArrayList<>();
+        for (String vaccineId: vaccineIds) {
+            allVaccines.add(getVaccine(UUID.fromString(vaccineId)));
+        }
+        return allVaccines;
+    }
+
     public void addVaccine(Vaccine vaccine) {
         ContentValues values = getContentValues(vaccine);
         mDatabase.insert(VaccineTable.NAME, null, values);

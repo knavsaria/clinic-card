@@ -1,7 +1,9 @@
 package com.navsaria.keeran.clinicbook;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -24,6 +26,7 @@ public class Child implements Serializable {
     private boolean mIsDisabled;
     private boolean mMotherNeedsSupport;
     private Date mDob;
+    private List<String> mVaccines;
 
     public Child() {
         this(UUID.randomUUID());
@@ -31,6 +34,8 @@ public class Child implements Serializable {
         mIsTwin = false;
         mIsDisabled = false;
         mMotherNeedsSupport = false;
+        mVaccines = new ArrayList<>();
+        int i = 0;
     }
 
     public Child(UUID id) {
@@ -62,7 +67,24 @@ public class Child implements Serializable {
         mMotherNeedsSupport = motherNeedsSupport;
     }
 
+    public List<String> getVaccines() {
+        return mVaccines;
+    }
 
+    public void setVaccines(List<String> vaccines) {
+        mVaccines = vaccines;
+    }
+
+    public void addVaccine(UUID vaccineId) {
+        if (mVaccines == null) {
+            mVaccines = new ArrayList<>();
+        }
+        mVaccines.add(vaccineId.toString());
+    }
+
+    public void removeVaccine(UUID vaccineId) {
+        mVaccines.remove(vaccineId.toString());
+    }
 
     public String getBirthFacility() {
         return mBirthFacility;

@@ -4,12 +4,14 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.text.TextUtils;
 
 import com.navsaria.keeran.clinicbook.database.ChildBaseHelper;
 import com.navsaria.keeran.clinicbook.database.ChildCursorWrapper;
 import com.navsaria.keeran.clinicbook.database.ChildDbSchema.ChildTable;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.UUID;
@@ -23,6 +25,7 @@ public class ChildList {
     private static ChildList sChildList;
     private Context mContext;
     private SQLiteDatabase mDatabase;
+
 
     public static ChildList getChildList(Context context) {
         if ( sChildList == null) {
@@ -138,6 +141,21 @@ public class ChildList {
             values.put(ChildTable.Cols.MOTHER_SUPPORT, 0);
         }
 
+        values.put(ChildTable.Cols.VACCINES, serialize(child.getVaccines()));
+
+
         return values;
     }
+
+    private static final String ARRAY_DIVIDER = "#a1r2ra5yd2iv1i9der";
+
+    public static String serialize(List<String> content){
+        return TextUtils.join(ARRAY_DIVIDER, content);
+    }
+
+    public static List<String> derialize(String content){
+        List<String> myList = new ArrayList<String>(Arrays.asList(content.split(ARRAY_DIVIDER)));
+        return myList;
+    }
+
 }
