@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
@@ -23,7 +24,7 @@ import java.util.Date;
 public class ChildrenFragment extends Fragment {
 
     private ChildList mChildList;
-    private ImageButton mAddChild;
+    private FloatingActionButton mAddChild;
     private LinearLayout mLinearLayout;
 
     private static final String ADD_CHILD_DIALOG = "AddChildDialog";
@@ -45,7 +46,7 @@ public class ChildrenFragment extends Fragment {
         updateUI();
 
         //Add the AddChild button to UI
-        mAddChild = v.findViewById(R.id.add_child);
+        mAddChild = (FloatingActionButton) v.findViewById(R.id.add_child);
         mAddChild.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
