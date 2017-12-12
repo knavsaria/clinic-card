@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -65,7 +66,7 @@ public class ImmunisationFragment extends Fragment {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         updateView();
 
-        Button addVaccineButton = (Button) v.findViewById(R.id.add_vaccine_button);
+        FloatingActionButton addVaccineButton = (FloatingActionButton) v.findViewById(R.id.add_vaccine_button);
         addVaccineButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
