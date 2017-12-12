@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
@@ -27,6 +28,8 @@ public class AddChildFragment extends DialogFragment {
     private EditText mLastName;
     private RadioGroup mIsBoy;
     private TextView mError;
+    private TextInputLayout mFirstNameInputLayout;
+    private TextInputLayout mLastNameInputLayout;
 
     public static final String FIRST_NAME =
             "com.navsaria.keeran.clinicbook.firstname";
@@ -46,6 +49,10 @@ public class AddChildFragment extends DialogFragment {
         mLastName = (EditText) v.findViewById(R.id.add_last_name);
         mIsBoy = (RadioGroup) v.findViewById(R.id.child_gender);
         mError = (TextView) v.findViewById(R.id.adding_child_error_textview);
+        mFirstNameInputLayout = (TextInputLayout) v.findViewById(R.id.input_layout_firstName);
+        mLastNameInputLayout = (TextInputLayout) v.findViewById(R.id.input_layout_surname);
+
+
 
         final AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
                 .setView(v)
@@ -70,14 +77,23 @@ public class AddChildFragment extends DialogFragment {
                         boolean firstNameError = false;
                         boolean lastNameError = false;
 
+
+                        boolean isValid = true;
+
                         String firstName = mFirstName.getText().toString();
                         if (mFirstName.getText().length() == 0) {
-                            firstNameError = true;
+                            mFirstNameInputLayout.setError(getString(R.string.error_message_adding_child, "first name"));
+                            isValid = false;
+                        } else {
+                            mFirstNameInputLayout.setErrorEnabled(false);
                         }
 
                         String lastName = mLastName.getText().toString();
                         if (mLastName.getText().length() == 0) {
-                            lastNameError = true;
+                            mLastNameInputLayout.setError(getString(R.string.error_message_adding_child, "surname"));
+                            isValid = false;
+                        } else {
+                            mLastNameInputLayout.setErrorEnabled(false);
                         }
 
                         boolean isBoy = false;
@@ -87,21 +103,12 @@ public class AddChildFragment extends DialogFragment {
                         } else if (genderSelected == R.id.child_is_girl) {
                             isBoy = false;
                         } else {
-                            genderError = true;
-                        }
-
-                        if (firstNameError) {
-                            mError.setText(getString(R.string.error_message_adding_child, "first name"));
-                            mError.setVisibility(TextView.VISIBLE);
-                            mFirstName.setSelection(0);
-                        } else if (lastNameError) {
-                            mError.setText(getString(R.string.error_message_adding_child, "last name"));
-                            mError.setVisibility(TextView.VISIBLE);
-                            mLastName.setSelection(0);
-                        } else if (genderError) {
+                            isValid = false;
                             mError.setText(getString(R.string.error_message_adding_child, "gender"));
                             mError.setVisibility(TextView.VISIBLE);
-                        } else {
+                        }
+
+                        if (isValid) {
                             sendResult(Activity.RESULT_OK, firstName, lastName, isBoy);
                             alertDialog.dismiss();
                         }

@@ -20,7 +20,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <TextView
-                style="@style/card_view_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="@string/personal_data_mother_info"
                 />
                 <LinearLayout

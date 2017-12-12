@@ -5,13 +5,13 @@
 
         <TextView
             android:id="@+id/child_name"
-            style="@style/style_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:gravity="center"
             android:text="@string/child_full_name"
             android:drawableLeft="@drawable/ic_account_circle_black_48dp"/>
+    <!--style="@style/style_text_view"-->
 
 
 </FrameLayout>

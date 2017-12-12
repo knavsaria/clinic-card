@@ -3,8 +3,8 @@
     <string name="add_child_button">Add Child</string>
     <string name="child_full_name">%1$s %2$s</string>
     <string name="add_child_title">Add Child</string>
-    <string name="child_girl">Female</string>
-    <string name="child_boy">Male</string>
+    <string name="child_girl">Girl</string>
+    <string name="child_boy">Boy</string>
     <string name="add_first_name">First Name</string>
     <string name="add_last_name">Surname</string>
     <string name="error_message_adding_child">Please provide the %1$s of your child</string>

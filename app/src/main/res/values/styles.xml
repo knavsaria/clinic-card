@@ -9,7 +9,8 @@
     </style>
 
 
-    <style name="SuperMaterialTheme" parent="Theme.AppCompat">
+    <style name="SuperMaterialTheme" parent="Theme.AppCompat.Light">
+        <!-- Parent theme for all pre-lollipop and post-lollipop versions -->
 
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
