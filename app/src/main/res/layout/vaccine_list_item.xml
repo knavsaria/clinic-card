@@ -40,20 +40,23 @@
                 android:layout_weight="1"
                 android:text="@string/label_vaccine_code"/>
             <TextView
-                android:id="@+id/text_view_site"
+                android:id="@+id/text_view_vaccine_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/label_site"/>
+                android:text="@string/label_vaccine_date"/>
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/text_view_vaccine_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        
+        <ImageView
+            android:id="@+id/img_delete_vaccine"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="7dp"
+            android:src="@drawable/ic_delete_forever_black_24dp"
+            android:tint="@color/grey_500"
             android:layout_gravity="bottom|end"
-            android:layout_margin="10dp"
-            android:text="@string/label_vaccine_date"/>
+            />
+
 
     </LinearLayout>
 

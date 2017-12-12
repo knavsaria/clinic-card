@@ -141,8 +141,8 @@ public class ImmunisationFragment extends Fragment {
             TextView mBatchNumber = (TextView) itemView.findViewById(R.id.text_view_batch_number);
             mBatchNumber.setText(getString(R.string.label_batch_number, vaccine.getBatchNumber()));
 
-            TextView mSite = (TextView) itemView.findViewById(R.id.text_view_site);
-            mSite.setText(getString(R.string.label_site, vaccine.getSite()));
+/*            TextView mSite = (TextView) itemView.findViewById(R.id.text_view_site);
+            mSite.setText(getString(R.string.label_site, vaccine.getSite()));*/
 
             TextView mVaccineCode = (TextView) itemView.findViewById(R.id.text_view_vaccine_code);
             mVaccineCode.setText(getString(R.string.label_vaccine_code, vaccine.getVaccineCode()));
