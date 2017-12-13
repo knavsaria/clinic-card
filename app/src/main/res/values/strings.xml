@@ -59,5 +59,7 @@
     <string name="add_vaccine_title">Add Vaccine</string>
     <string name="label_vaccine_date_button">Add Vaccine Date</string>
     <string name="label_vaccine_warning">Please enter %1$s</string>
+    <string name="label_confirm_delete">Are you sure you want to delete?</string>
+    <string name="label_delete_dialog">Delete item</string>
 
 </resources>

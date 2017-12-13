@@ -34,6 +34,8 @@ public class ChildrenFragment extends Fragment {
     private LinearLayout mLinearLayout;
 
     private static final String ADD_CHILD_DIALOG = "AddChildDialog";
+    private static final String DELETE_CHILD_DIALOG = "DeleteChildDialog";
+    private static final int DELETE_CHILD_REQUEST_CODE = 1;
     private static final int CHILD_DETAILS = 0;
 
 
@@ -111,6 +113,9 @@ public class ChildrenFragment extends Fragment {
             mParentList.addParent(father);
             mParentList.addParent(mother);
             updateUI();
+        } else if (requestCode == DELETE_CHILD_REQUEST_CODE) {
+            Child childToDelete = (Child) data.getSerializableExtra(ConfirmDeleteFragment.EXTRA_CHILD);
+            deleteChild(childToDelete);
         }
     }
 
@@ -139,7 +144,10 @@ public class ChildrenFragment extends Fragment {
             deleteChild.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    deleteChild(child);
+                    FragmentManager fm = getFragmentManager();
+                    ConfirmDeleteFragment confirmDeleteFragment = ConfirmDeleteFragment.newInstance(child);
+                    confirmDeleteFragment.setTargetFragment(ChildrenFragment.this, DELETE_CHILD_REQUEST_CODE);
+                    confirmDeleteFragment.show(fm, DELETE_CHILD_DIALOG);
                 }
             });
             mLinearLayout.addView(childView, index);
@@ -150,8 +158,10 @@ public class ChildrenFragment extends Fragment {
     private void deleteChild(Child child) {
         VaccineList vaccineList = VaccineList.getVaccineList(getActivity());
         ChildList childList = ChildList.getChildList(getActivity());
-        for (String vaccineId: child.getVaccines()) {
-            vaccineList.deleteVaccine(UUID.fromString(vaccineId));
+        if (child.getVaccines() != null) {
+            for (String vaccineId: child.getVaccines()) {
+                vaccineList.deleteVaccine(UUID.fromString(vaccineId));
+            }
         }
         childList.deleteChild(child.getId());
         updateUI();
