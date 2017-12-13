@@ -53,7 +53,7 @@
             android:layout_height="30dp"
             android:layout_margin="7dp"
             android:src="@drawable/ic_delete_forever_black_24dp"
-            android:tint="@color/grey_500"
+            android:tint="@color/material_red_900"
             android:layout_gravity="bottom|end"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"

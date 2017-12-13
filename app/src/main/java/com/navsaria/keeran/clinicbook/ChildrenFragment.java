@@ -2,20 +2,26 @@ package com.navsaria.keeran.clinicbook;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.Date;
+import java.util.UUID;
 
 /**
  * Created by keeran on 2017/11/22.
@@ -128,8 +134,27 @@ public class ChildrenFragment extends Fragment {
                     startActivity(intent);
                 }
             });
+
+            ImageView deleteChild = (ImageView) childView.findViewById(R.id.img_delete_child);
+            deleteChild.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    deleteChild(child);
+                }
+            });
             mLinearLayout.addView(childView, index);
             index++;
         }
     }
+
+    private void deleteChild(Child child) {
+        VaccineList vaccineList = VaccineList.getVaccineList(getActivity());
+        ChildList childList = ChildList.getChildList(getActivity());
+        for (String vaccineId: child.getVaccines()) {
+            vaccineList.deleteVaccine(UUID.fromString(vaccineId));
+        }
+        childList.deleteChild(child.getId());
+        updateUI();
+    }
+
 }

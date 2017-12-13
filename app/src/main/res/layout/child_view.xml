@@ -3,17 +3,38 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/child_name"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:layout_margin="10dp"
-            android:gravity="center"
-            android:text="@string/child_full_name"
-            android:drawablePadding="10dp"
-            android:drawableLeft="@drawable/ic_account_circle_black_48dp"/>
-    <!--style="@style/style_text_view"-->
+            android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/child_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:text="@string/child_full_name"
+                    android:drawablePadding="10dp"
+                    android:drawableLeft="@drawable/ic_account_circle_black_48dp"
+                    android:drawableTint="@color/material_orange_900"/>
+                <!--style="@style/style_text_view"-->
+
+                <ImageView
+                    android:id="@+id/img_delete_child"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_delete_forever_black_24dp"
+                    android:tint="@color/material_red_900"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:clickable="true" />
+
+        </LinearLayout>
+
+
 
 
 </FrameLayout>

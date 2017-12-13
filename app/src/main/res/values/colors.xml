@@ -7,4 +7,11 @@
     <color name="error_color">#F4511E</color>
     <color name="grey_500">#9E9E9E</color>
     <color name="material_yellow_50">#FFFDE7</color>
+    <color name="material_red_900">#B71C1C</color>
+    <color name="material_orange_900">#E65100</color>
+
+
+
+
+
 </resources>

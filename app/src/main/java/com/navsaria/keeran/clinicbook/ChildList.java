@@ -64,6 +64,12 @@ public class ChildList {
         mDatabase.insert(ChildTable.NAME, null, values);
     }
 
+    public void deleteChild(UUID childId) {
+        mDatabase.delete(ChildTable.NAME,
+                ChildTable.Cols.UUID + " = ?",
+                new String[] {childId.toString()});
+    }
+
     public Child getChild(UUID id) {
         ChildCursorWrapper cursor = queryChildren(
                 ChildTable.Cols.UUID + " = ?",

@@ -87,7 +87,7 @@ public class VaccineAdapter extends RecyclerView.Adapter<VaccineAdapter.VaccineH
     public void deleteVaccine(Vaccine vaccine, int position) {
         VaccineList vaccineList = VaccineList.getVaccineList(mContext);
         ChildList childList = ChildList.getChildList(mContext);
-        vaccineList.deleteVaccine(vaccine);
+        vaccineList.deleteVaccine(vaccine.getId());
         mChild.removeVaccine(vaccine.getId());
         childList.updateChild(mChild);
         mVaccines = vaccineList.getVaccines(mChild.getVaccines());
