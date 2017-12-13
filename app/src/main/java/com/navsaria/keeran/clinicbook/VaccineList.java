@@ -94,6 +94,13 @@ public class VaccineList {
                 new String[] {uuidString});
     }
 
+    public void deleteVaccine(Vaccine vaccine) {
+        String uuidString = vaccine.getId().toString();
+        mDatabase.delete(VaccineTable.NAME,
+                VaccineTable.Cols.UUID + " = ?",
+                new String[] {uuidString});
+    }
+
     private VaccineCursorWrapper queryVaccines(String whereClause, String[] whereArgs) {
         Cursor cursor= mDatabase.query(
                 VaccineTable.NAME,

@@ -121,7 +121,8 @@ public class ImmunisationFragment extends Fragment {
     private void updateView() {
 
             if (mAdapter == null) {
-                mAdapter = new VaccineAdapter(mListOfVaccines);
+                LayoutInflater inflater = LayoutInflater.from(getActivity());
+                mAdapter = new VaccineAdapter(getActivity(), mListOfVaccines, mChild);
                 mRecyclerView.setAdapter(mAdapter);
             } else {
                 mAdapter.setVaccineList(mListOfVaccines);
@@ -130,7 +131,7 @@ public class ImmunisationFragment extends Fragment {
     }
 
 
-    public class VaccineHolder extends RecyclerView.ViewHolder {
+/*    public class VaccineHolder extends RecyclerView.ViewHolder {
 
         public VaccineHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.vaccine_list_item, parent, false));
@@ -143,8 +144,8 @@ public class ImmunisationFragment extends Fragment {
             TextView batchNumber = (TextView) itemView.findViewById(R.id.text_view_batch_number);
             batchNumber.setText(getString(R.string.label_batch_number, vaccine.getBatchNumber()));
 
-/*            TextView mSite = (TextView) itemView.findViewById(R.id.text_view_site);
-            mSite.setText(getString(R.string.label_site, vaccine.getSite()));*/
+*//*            TextView mSite = (TextView) itemView.findViewById(R.id.text_view_site);
+            mSite.setText(getString(R.string.label_site, vaccine.getSite()));*//*
 
             TextView vaccineCode = (TextView) itemView.findViewById(R.id.text_view_vaccine_code);
             vaccineCode.setText(getString(R.string.label_vaccine_code, vaccine.getVaccineCode()));
@@ -161,11 +162,11 @@ public class ImmunisationFragment extends Fragment {
             });
         }
 
-    }// End of ViewHolder
+    }// End of ViewHolder*/
 
 
 
-    public class VaccineAdapter extends RecyclerView.Adapter<VaccineHolder> {
+/*    public class VaccineAdapter extends RecyclerView.Adapter<VaccineHolder> {
 
         private List<Vaccine> mVaccines;
 
@@ -192,7 +193,7 @@ public class ImmunisationFragment extends Fragment {
         public void setVaccineList(List<Vaccine> vaccines) {
             mVaccines = vaccines;
         }
-    } // End of Adapter
+    } // End of Adapter*/
 
 
 }// End of class
