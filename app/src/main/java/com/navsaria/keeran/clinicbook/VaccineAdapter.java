@@ -52,9 +52,6 @@ public class VaccineAdapter extends RecyclerView.Adapter<VaccineAdapter.VaccineH
     // ViewHolder
     public class VaccineHolder extends RecyclerView.ViewHolder {
 
-        UUID mVaccineId;
-        int mPosition;
-
         public VaccineHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.vaccine_list_item, parent, false));
         }
@@ -94,7 +91,8 @@ public class VaccineAdapter extends RecyclerView.Adapter<VaccineAdapter.VaccineH
         mChild.removeVaccine(vaccine.getId());
         childList.updateChild(mChild);
         mVaccines = vaccineList.getVaccines(mChild.getVaccines());
-        notifyDataSetChanged();
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, mVaccines.size());
     }
 
 } // End of Adapter
