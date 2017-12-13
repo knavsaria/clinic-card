@@ -13,7 +13,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -135,20 +137,28 @@ public class ImmunisationFragment extends Fragment {
         }
 
         public void bind(Vaccine vaccine) {
-            TextView mAgeGroup = (TextView) itemView.findViewById(R.id.text_view_age_group);
-            mAgeGroup.setText(getString(R.string.label_age_group, vaccine.getAgeGroup()));
+            TextView ageGroup = (TextView) itemView.findViewById(R.id.text_view_age_group);
+            ageGroup.setText(getString(R.string.label_age_group, vaccine.getAgeGroup()));
 
-            TextView mBatchNumber = (TextView) itemView.findViewById(R.id.text_view_batch_number);
-            mBatchNumber.setText(getString(R.string.label_batch_number, vaccine.getBatchNumber()));
+            TextView batchNumber = (TextView) itemView.findViewById(R.id.text_view_batch_number);
+            batchNumber.setText(getString(R.string.label_batch_number, vaccine.getBatchNumber()));
 
 /*            TextView mSite = (TextView) itemView.findViewById(R.id.text_view_site);
             mSite.setText(getString(R.string.label_site, vaccine.getSite()));*/
 
-            TextView mVaccineCode = (TextView) itemView.findViewById(R.id.text_view_vaccine_code);
-            mVaccineCode.setText(getString(R.string.label_vaccine_code, vaccine.getVaccineCode()));
+            TextView vaccineCode = (TextView) itemView.findViewById(R.id.text_view_vaccine_code);
+            vaccineCode.setText(getString(R.string.label_vaccine_code, vaccine.getVaccineCode()));
 
-            TextView mDate = (TextView) itemView.findViewById(R.id.text_view_vaccine_date);
-            mDate.setText(getString(R.string.label_vaccine_date, vaccine.getDateGiven().toString()));
+            TextView date = (TextView) itemView.findViewById(R.id.text_view_vaccine_date);
+            date.setText(getString(R.string.label_vaccine_date, vaccine.getDateGiven().toString()));
+
+            ImageView deleteVaccine = (ImageView) itemView.findViewById(R.id.img_delete_vaccine);
+            deleteVaccine.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(getActivity(), "Vaccine Deleted", Toast.LENGTH_SHORT).show();
+                }
+            });
         }
 
     }// End of ViewHolder
