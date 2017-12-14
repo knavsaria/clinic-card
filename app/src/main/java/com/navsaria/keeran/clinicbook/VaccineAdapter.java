@@ -1,7 +1,10 @@
 package com.navsaria.keeran.clinicbook;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
+import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,12 +25,17 @@ public class VaccineAdapter extends RecyclerView.Adapter<VaccineAdapter.VaccineH
     private List<Vaccine> mVaccines;
     private Context mContext;
     private Child mChild;
+    private OnItemClickListener mListener;
 
+    public interface OnItemClickListener {
+        void onItemClicked(View v, Vaccine vaccine, int position);
+    }
 
-    public VaccineAdapter (Context context, List<Vaccine> vaccines, Child child) {
+    public VaccineAdapter (OnItemClickListener listener, Context context, List<Vaccine> vaccines, Child child, FragmentManager fm) {
         mVaccines = vaccines;
         mContext = context;
         mChild = child;
+        mListener = listener;
     }
 
     @Override
@@ -77,13 +85,13 @@ public class VaccineAdapter extends RecyclerView.Adapter<VaccineAdapter.VaccineH
             deleteVaccineButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    deleteVaccine(vaccine, position);
+                    mListener.onItemClicked(view, vaccine, position);
                 }
             });
         }
 
     }// End of ViewHolder
-
+/*
     public void deleteVaccine(Vaccine vaccine, int position) {
         VaccineList vaccineList = VaccineList.getVaccineList(mContext);
         ChildList childList = ChildList.getChildList(mContext);
@@ -93,6 +101,6 @@ public class VaccineAdapter extends RecyclerView.Adapter<VaccineAdapter.VaccineH
         mVaccines = vaccineList.getVaccines(mChild.getVaccines());
         notifyItemRemoved(position);
         notifyItemRangeChanged(position, mVaccines.size());
-    }
+    }*/
 
 } // End of Adapter

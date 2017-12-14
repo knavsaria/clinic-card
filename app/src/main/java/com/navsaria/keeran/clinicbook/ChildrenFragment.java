@@ -30,7 +30,6 @@ import java.util.UUID;
 public class ChildrenFragment extends Fragment {
 
     private ChildList mChildList;
-    private FloatingActionButton mAddChild;
     private LinearLayout mLinearLayout;
 
     private static final String ADD_CHILD_DIALOG = "AddChildDialog";
@@ -54,8 +53,8 @@ public class ChildrenFragment extends Fragment {
         updateUI();
 
         //Add the AddChild button to UI
-        mAddChild = (FloatingActionButton) v.findViewById(R.id.add_child);
-        mAddChild.setOnClickListener(new View.OnClickListener() {
+        FloatingActionButton addChild = (FloatingActionButton) v.findViewById(R.id.add_child);
+        addChild.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentManager fragmentManager = getFragmentManager();

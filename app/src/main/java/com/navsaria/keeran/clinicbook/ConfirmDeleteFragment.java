@@ -19,8 +19,10 @@ public class ConfirmDeleteFragment extends DialogFragment {
 
     private Child mChild;
 
+
     private static final String ARGS_CHILD = "com.navsaria.keeran.childArgs";
     public static final String EXTRA_CHILD = "com.navsaria.keeran.childExtra";
+
 
     public static ConfirmDeleteFragment newInstance(Child child) {
         Bundle args = new Bundle();
@@ -30,11 +32,14 @@ public class ConfirmDeleteFragment extends DialogFragment {
         return confirmDeleteFragment;
     }
 
+
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         View v = LayoutInflater.from(getActivity())
                 .inflate(R.layout.confirm_delete, null);
 
-        mChild = (Child) getArguments().getSerializable(ARGS_CHILD);
+        if (getArguments() != null) {
+            mChild = (Child) getArguments().getSerializable(ARGS_CHILD);
+        }
 
         final AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
                 .setView(v)
@@ -55,9 +60,11 @@ public class ConfirmDeleteFragment extends DialogFragment {
                     @Override
                     public void onClick(View view) {
                         Intent intent = new Intent();
-                        intent.putExtra(EXTRA_CHILD, mChild);
-                            getTargetFragment().onActivityResult(getTargetRequestCode(), Activity.RESULT_OK, intent);
-                            alertDialog.dismiss();
+                        if (mChild != null) {
+                            intent.putExtra(EXTRA_CHILD, mChild);
+                        }
+                        getTargetFragment().onActivityResult(getTargetRequestCode(), Activity.RESULT_OK, intent);
+                        alertDialog.dismiss();
                     }
                 });
 

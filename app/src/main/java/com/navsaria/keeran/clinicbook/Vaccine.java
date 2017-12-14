@@ -1,5 +1,6 @@
 package com.navsaria.keeran.clinicbook;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
 
@@ -7,7 +8,7 @@ import java.util.UUID;
  * Created by keeran on 2017/12/08.
  */
 
-public class Vaccine {
+public class Vaccine implements Serializable{
 
     private UUID mId;
     private int mAgeGroup;

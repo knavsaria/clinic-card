@@ -13,33 +13,31 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
 import java.util.UUID;
 
 /**
  * Created by keeran on 2017/12/08.
  */
 
-public class ImmunisationFragment extends Fragment {
+public class ImmunisationFragment extends Fragment implements VaccineAdapter.OnItemClickListener {
 
     private static final String ARGS_ID = "child_id";
 
-    private final int ADD_VACCINE = 0;
+    private final int ADD_VACCINE_REQUEST_CODE = 0;
+    private final int DELETE_VACCINE_REQUEST_CODE = 1;
 
     private final String ADD_VACCINE_TAG = "com.navsaria.keeran.child.addVaccine";
+    private final String DELETE_VACCINE_TAG = "com.navsaria.keeran.child.deleteVaccine";
 
 
 
+
+    private int mPositionToDelete;
+    private Vaccine mVaccineToDelete;
     private RecyclerView mRecyclerView;
     private VaccineAdapter mAdapter;
     private VaccineList mVaccineList;
@@ -76,7 +74,7 @@ public class ImmunisationFragment extends Fragment {
             public void onClick(View view) {
                 FragmentManager fm = getFragmentManager();
                 AddVaccineFragment addVaccineFragment = new AddVaccineFragment();
-                addVaccineFragment .setTargetFragment(ImmunisationFragment.this, ADD_VACCINE);
+                addVaccineFragment .setTargetFragment(ImmunisationFragment.this, ADD_VACCINE_REQUEST_CODE);
                 addVaccineFragment.show(fm, ADD_VACCINE_TAG);
             }
         });
@@ -86,7 +84,6 @@ public class ImmunisationFragment extends Fragment {
     }
 
     private void getChildsListOfVaccines() {
-        List<String> test = mChild.getVaccines();
         if (mChild.getVaccines().size() > 0) {
             mListOfVaccines = mVaccineList.getVaccines(mChild.getVaccines());
         }
@@ -99,7 +96,7 @@ public class ImmunisationFragment extends Fragment {
             return;
         }
 
-        if (requestCode == ADD_VACCINE) {
+        if (requestCode == ADD_VACCINE_REQUEST_CODE) {
             int ageGroup = data.getIntExtra(AddVaccineFragment.AGE_GROUP, 0);
             String vaccineCode = data.getStringExtra(AddVaccineFragment.VACCINE_CODE);
             String batchNumber = data.getStringExtra(AddVaccineFragment.BATCH_NUMBER);
@@ -117,85 +114,43 @@ public class ImmunisationFragment extends Fragment {
             mVaccineList.addVaccine(newVaccine);
             getChildsListOfVaccines();
             updateView();
+        } else if (requestCode == DELETE_VACCINE_REQUEST_CODE) {
+            deleteVaccine(mVaccineToDelete, mPositionToDelete);
         }
+    }
+
+    public void deleteVaccine(Vaccine vaccine, int position) {
+        VaccineList vaccineList = VaccineList.getVaccineList(getActivity());
+        ChildList childList = ChildList.getChildList(getActivity());
+        vaccineList.deleteVaccine(vaccine.getId());
+        mChild.removeVaccine(vaccine.getId());
+        childList.updateChild(mChild);
+        mListOfVaccines = vaccineList.getVaccines(mChild.getVaccines());
+        mAdapter.setVaccineList(mListOfVaccines);
+        mAdapter.notifyItemRemoved(position);
+        mAdapter.notifyItemRangeChanged(position, mListOfVaccines.size());
+    }
+
+    @Override
+    public void onItemClicked(View v, Vaccine vaccine, int position) {
+        mPositionToDelete = position;
+        mVaccineToDelete = vaccine;
+        FragmentManager fm = getFragmentManager();
+        ConfirmDeleteFragment confirmDeleteFragment = new ConfirmDeleteFragment();
+        confirmDeleteFragment.setTargetFragment(ImmunisationFragment.this, DELETE_VACCINE_REQUEST_CODE);
+        confirmDeleteFragment.show(fm, DELETE_VACCINE_TAG);
     }
 
     private void updateView() {
 
             if (mAdapter == null) {
                 LayoutInflater inflater = LayoutInflater.from(getActivity());
-                mAdapter = new VaccineAdapter(getActivity(), mListOfVaccines, mChild);
+                mAdapter = new VaccineAdapter(this, getActivity(), mListOfVaccines, mChild, getFragmentManager());
                 mRecyclerView.setAdapter(mAdapter);
             } else {
                 mAdapter.setVaccineList(mListOfVaccines);
                 mAdapter.notifyDataSetChanged();
             }
     }
-
-
-/*    public class VaccineHolder extends RecyclerView.ViewHolder {
-
-        public VaccineHolder(LayoutInflater inflater, ViewGroup parent) {
-            super(inflater.inflate(R.layout.vaccine_list_item, parent, false));
-        }
-
-        public void bind(Vaccine vaccine) {
-            TextView ageGroup = (TextView) itemView.findViewById(R.id.text_view_age_group);
-            ageGroup.setText(getString(R.string.label_age_group, vaccine.getAgeGroup()));
-
-            TextView batchNumber = (TextView) itemView.findViewById(R.id.text_view_batch_number);
-            batchNumber.setText(getString(R.string.label_batch_number, vaccine.getBatchNumber()));
-
-*//*            TextView mSite = (TextView) itemView.findViewById(R.id.text_view_site);
-            mSite.setText(getString(R.string.label_site, vaccine.getSite()));*//*
-
-            TextView vaccineCode = (TextView) itemView.findViewById(R.id.text_view_vaccine_code);
-            vaccineCode.setText(getString(R.string.label_vaccine_code, vaccine.getVaccineCode()));
-
-            TextView date = (TextView) itemView.findViewById(R.id.text_view_vaccine_date);
-            date.setText(getString(R.string.label_vaccine_date, vaccine.getDateGiven().toString()));
-
-            ImageView deleteVaccine = (ImageView) itemView.findViewById(R.id.img_delete_vaccine);
-            deleteVaccine.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Toast.makeText(getActivity(), "Vaccine Deleted", Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
-
-    }// End of ViewHolder*/
-
-
-
-/*    public class VaccineAdapter extends RecyclerView.Adapter<VaccineHolder> {
-
-        private List<Vaccine> mVaccines;
-
-
-        public VaccineAdapter (List<Vaccine> vaccines) {
-            mVaccines = vaccines;
-        }
-
-        @Override
-        public VaccineHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            return new VaccineHolder(LayoutInflater.from(getActivity()), parent);
-        }
-
-        @Override
-        public void onBindViewHolder(VaccineHolder holder, int position) {
-            holder.bind(mVaccines.get(position));
-        }
-
-        @Override
-        public int getItemCount() {
-            return mVaccines.size();
-        }
-
-        public void setVaccineList(List<Vaccine> vaccines) {
-            mVaccines = vaccines;
-        }
-    } // End of Adapter*/
-
 
 }// End of class
