@@ -3,16 +3,45 @@
     <!-- Base application theme. -->
     <style name="AppMaterialTheme" parent="SuperMaterialTheme">
         <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@color/material_teal_50</item>
+        <item name="colorControlNormal">@color/colorPrimaryDark</item>
+        <item name="colorControlHighlight">@color/colorAccent</item>
+        <item name="android:editTextPreferenceStyle">@style/MyEditTextTheme</item>
     </style>
 
-
-    <style name="SuperMaterialTheme" parent="Theme.AppCompat.Light">
+    <style name="SuperMaterialTheme" parent="Theme.AppCompat">
         <!-- Parent theme for all pre-lollipop and post-lollipop versions -->
 
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/material_teal_50</item>
+        <item name="colorControlNormal">@color/colorPrimaryDark</item>
+        <item name="colorControlHighlight">@color/colorAccent</item>
+        <item name="editTextStyle">@style/MyEditTextTheme</item>
+        <item name="android:textColorHint">@color/colorPrimaryDark</item>
     </style>
+
+    <style name="MyEditTextTheme" parent="Widget.AppCompat.EditText">
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+s
+    <style name="MyDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:background">@color/material_teal_50</item>
+    </style>
+
+    <!--    <style name="Widget.EditText">
+            <item name="focusable">true</item>
+            <item name="focusableInTouchMode">true</item>
+            <item name="clickable">true</item>
+            <item name="background">?attr/editTextBackground</item>
+            <item name="textAppearance">?attr/textAppearanceMediumInverse</item>
+            <item name="textColor">?attr/editTextColor</item>
+            <item name="gravity">center_vertical</item>
+            <item name="breakStrategy">simple</item>
+            <item name="hyphenationFrequency">normal</item>
+            <item name="defaultFocusHighlightEnabled">false</item>
+        </style>-->
 
 <!--    <style name="style_text_view" >
         <item name="android:textSize">16sp</item>

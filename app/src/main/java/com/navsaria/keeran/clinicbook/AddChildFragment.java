@@ -54,7 +54,7 @@ public class AddChildFragment extends DialogFragment {
 
 
 
-        final AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
+        final AlertDialog alertDialog = new AlertDialog.Builder(getActivity(), R.style.MyDialogTheme)
                 .setView(v)
                 .setTitle(R.string.add_child_title)
                 .setPositiveButton(android.R.string.ok, null)
