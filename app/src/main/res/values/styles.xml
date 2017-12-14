@@ -1,4 +1,7 @@
-<resources>
+<resources
+    xmlns:card_view="http://schemas.android.com/apk/res-auto">
+
+
 
     <!-- Base application theme. -->
     <style name="AppMaterialTheme" parent="SuperMaterialTheme">
@@ -25,42 +28,9 @@
     <style name="MyEditTextTheme" parent="Widget.AppCompat.EditText">
         <item name="android:textColor">@color/colorAccent</item>
     </style>
-s
+
     <style name="MyDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:background">@color/material_teal_50</item>
     </style>
-
-    <!--    <style name="Widget.EditText">
-            <item name="focusable">true</item>
-            <item name="focusableInTouchMode">true</item>
-            <item name="clickable">true</item>
-            <item name="background">?attr/editTextBackground</item>
-            <item name="textAppearance">?attr/textAppearanceMediumInverse</item>
-            <item name="textColor">?attr/editTextColor</item>
-            <item name="gravity">center_vertical</item>
-            <item name="breakStrategy">simple</item>
-            <item name="hyphenationFrequency">normal</item>
-            <item name="defaultFocusHighlightEnabled">false</item>
-        </style>-->
-
-<!--    <style name="style_text_view" >
-        <item name="android:textSize">16sp</item>
-        <item name="android:padding">12dp</item>
-        <item name="android:textColor">@android:color/black</item>
-    </style>
-
-    <style name="card_view_header" >
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@color/colorAccent</item>
-        <item name="android:textSize">19sp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:gravity">center</item>
-        <item name="android:paddingBottom">5dp</item>
-        <item name="android:paddingTop">5dp</item>
-        <item name="android:layout_marginBottom">10dp</item>
-        <item name="android:textColor">@android:color/white</item>
-    </style>-->
-
 
 </resources>
