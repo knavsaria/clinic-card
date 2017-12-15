@@ -53,7 +53,7 @@
     <string name="label_vaccine_code">Vaccine Code: %1$s</string>
     <string name="label_site">Site: %1$s</string>
     <string name="label_vaccine_date">Vaccine Date: %1$s</string>
-    <string name="label_add_age_group">Choose Age Group</string>
+    <string name="label_add_age_group">Choose Age Group (months)</string>
     <string name="label_add_vaccine_code">Choose Vaccine Code</string>
     <string name="label_add_batch_number">Add Batch Number</string>
     <string name="add_vaccine_title">Add Vaccine</string>
