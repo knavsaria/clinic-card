@@ -499,7 +499,6 @@ public class PersonalDataFragment extends Fragment implements View.OnClickListen
 
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.i("PersonalDataFragment", "onActivityResult Called");
         if (resultCode != Activity.RESULT_OK) {
             return;
         }

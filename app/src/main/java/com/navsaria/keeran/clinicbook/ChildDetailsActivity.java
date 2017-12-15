@@ -35,38 +35,32 @@ public class ChildDetailsActivity extends SingleFragmentActivity {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
-        Log.i(TAG, "onCreate() called");
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        Log.i(TAG, "onStart() called");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Log.i(TAG, "onResume() called");
 
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        Log.i(TAG, "onPause() called");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         String  uuid = getIntent().getSerializableExtra(EXTRA_CHILD_ID).toString();
-        Log.i(TAG, "onStop() called" + uuid);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.i(TAG, "onDestroy() called");
     }
 }

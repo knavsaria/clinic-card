@@ -229,7 +229,6 @@ public class AddVaccineFragment extends DialogFragment {
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.i("PersonalDataFragment", "onActivityResult Called");
         if (resultCode != Activity.RESULT_OK) {
             return;
         }

@@ -80,13 +80,11 @@ public class ChildDetailsFragment extends Fragment implements View.OnClickListen
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.i("ChildDetailsFragment", "onDestroy Called");
     }
-
+s
     @Override
     public void onStop() {
         super.onStop();
-        Log.i("ChildDetailsFragment", "onStop Called");
     }
 
 }// End of Class ChildDetailsFragment
