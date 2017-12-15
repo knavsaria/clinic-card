@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/labelButton_personal_data"
-            android:background="@color/colorPrimaryDark"
+            android:background="@drawable/my_button"
             android:layout_margin="10dp"
             android:padding="10dp" />
 
@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/labelButton_immunisations"
-            android:background="@color/colorPrimaryDark"
+            android:background="@drawable/my_button"
             android:layout_margin="10dp"
             android:padding="10dp" />
 
