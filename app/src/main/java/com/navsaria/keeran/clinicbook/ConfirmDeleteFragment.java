@@ -41,7 +41,7 @@ public class ConfirmDeleteFragment extends DialogFragment {
             mChild = (Child) getArguments().getSerializable(ARGS_CHILD);
         }
 
-        final AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
+        final AlertDialog alertDialog = new AlertDialog.Builder(getActivity(), R.style.MyDialogTheme)
                 .setView(v)
                 .setTitle(R.string.label_delete_dialog)
                 .setPositiveButton(android.R.string.yes, null)

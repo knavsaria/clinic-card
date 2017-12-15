@@ -53,4 +53,9 @@
         <item name="android:background">@color/material_teal_50</item>
     </style>
 
+    <style name="MyDateDialogTheme" parent="ThemeOverlay.AppCompat.Dialog.Alert">
+    </style>
+
+    ThemeOverlay.AppCompat.Dialog.Alert
+
 </resources>
