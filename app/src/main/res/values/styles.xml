@@ -9,7 +9,7 @@
         <item name="android:windowBackground">@color/material_teal_50</item>
         <item name="colorControlNormal">@color/colorPrimaryDark</item>
         <item name="colorControlHighlight">@color/colorAccent</item>
-        <item name="android:editTextPreferenceStyle">@style/MyEditTextTheme</item>
+        <item name="android:editTextStyle">@style/MyEditTextTheme</item>
     </style>
 
     <style name="SuperMaterialTheme" parent="Theme.AppCompat">
@@ -23,10 +23,30 @@
         <item name="colorControlHighlight">@color/colorAccent</item>
         <item name="editTextStyle">@style/MyEditTextTheme</item>
         <item name="android:textColorHint">@color/colorPrimaryDark</item>
+        <item name="android:textViewStyle">@style/MyTextStyle</item>
+    </style>
+
+    <style name="MyTextStyle">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="MyCardViewButtonStyle" parent="Base.Widget.AppCompat.Button">
+        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="android:layout_margin">10dp</item>
+    </style>
+
+    <style name="CardViewHeaderstyle">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@color/material_grey_700</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:gravity">center</item>
     </style>
 
     <style name="MyEditTextTheme" parent="Widget.AppCompat.EditText">
-        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textColor">@color/material_blueish_grey_800</item>
     </style>
 
     <style name="MyDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">

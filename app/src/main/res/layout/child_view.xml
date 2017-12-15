@@ -16,10 +16,11 @@
                     android:layout_margin="10dp"
                     android:gravity="center"
                     android:text="@string/child_full_name"
+                    android:textStyle="bold"
+                    android:textSize="24dp"
                     android:drawablePadding="10dp"
                     android:drawableLeft="@drawable/ic_account_circle_black_48dp"
-                    android:drawableTint="@color/material_orange_900"/>
-                <!--style="@style/style_text_view"-->
+                    android:drawableTint="@color/material_grey_700" />
 
                 <ImageView
                     android:id="@+id/img_delete_child"
@@ -30,7 +31,7 @@
                     android:src="@drawable/ic_delete_forever_black_24dp"
                     android:tint="@color/material_red_900"
                     android:background="?attr/selectableItemBackgroundBorderless"
-                    android:clickable="true" />
+                    android:clickable="true"/>
 
         </LinearLayout>
 
