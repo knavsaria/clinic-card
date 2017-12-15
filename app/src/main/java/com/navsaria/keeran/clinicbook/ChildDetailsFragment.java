@@ -81,7 +81,7 @@ public class ChildDetailsFragment extends Fragment implements View.OnClickListen
     public void onDestroy() {
         super.onDestroy();
     }
-s
+
     @Override
     public void onStop() {
         super.onStop();
