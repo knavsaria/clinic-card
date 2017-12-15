@@ -1,45 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/child_recycler_view"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="16dp">
 
-    <Button
-        android:id="@+id/button_personal_data"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/child_recycler_view"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/labelButton_personal_data" />
+        android:orientation="vertical"
+        android:layout_centerInParent="true">
 
-    <Button
-        android:id="@+id/button_immunisations"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/labelButton_immunisations"/>
+        <Button
+            android:id="@+id/button_personal_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/labelButton_personal_data"
+            android:background="@color/colorPrimaryDark"
+            android:layout_margin="10dp"
+            android:padding="10dp" />
 
-    <Button
-        android:id="@+id/button_growth_measurements"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/labelButton_growth_measurements"/>
+        <Button
+            android:id="@+id/button_immunisations"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/labelButton_immunisations"
+            android:background="@color/colorPrimaryDark"
+            android:layout_margin="10dp"
+            android:padding="10dp" />
 
-    <Button
-        android:id="@+id/button_growth_stages"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/labelButton_growth_stages"/>
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/button_medications"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/labelButton_medication"/>
-
-    <Button
-        android:id="@+id/button_allergies"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/labelButton_allergies"/>
-
-</LinearLayout>
+</RelativeLayout>
